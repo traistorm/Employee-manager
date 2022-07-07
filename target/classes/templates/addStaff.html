@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{main.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div>THÊM NHÂN VIÊN MỚI</div>
+    <br>
+    <div class="add-employee">
+        <form th:action="@{/home}" th:object="${nhanVienNew}" method="post" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td>Mã số nhân viên</td>
+                    <td><input type="text" id="MSNV" name="MSNV" required></td>
+                </tr>
+                <tr>
+                    <td>Tên nhân viên</td>
+                    <td><input type="text" id="hoTen" name="hoTen" required></td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại</td>
+                    <td><input type="text" id="SDT" name="SDT" required></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" id="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ hiện tại</td>
+                    <td><input type="text" id="diaChiHienTai" name="diaChiHienTai" required></td>
+                </tr>
+                <tr>
+                    <td>Quê quán</td>
+                    <td><input type="text" id="queQuan" name="queQuan" required></td>
+                </tr>
+                <tr>
+                    <td>Ngày sinh</td>
+                    <td><input type="Date" id="ngaySinh" name="ngaySinh" required></td>
+                </tr>
+                <tr>
+                    <td>Giới tính</td>
+                    <td>
+                        <select name="gioiTinh" id="gioiTinh">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                            <option value="Không rõ">Không rõ</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dân tộc</td>
+                    <td><input type="text" id="danToc" name="danToc" required></td>
+                </tr>
+                <tr>
+                    <td>Sở thích</td>
+                    <td><input type="text" id="soThich" name="soThich" required></td>
+                </tr>
+                <tr>
+                    <td>Công việc hiện tại</td>
+                    <td><input type="text" id="congViecHienTai" name="congViecHienTai" required></td>
+                </tr>
+                <tr>
+                    <td>Chức vụ</td>
+                    <td>
+                        <select name="maCVNhanVienNew">
+                            <option th:each="chucVu : ${chucVuList}" th:value="${chucVu.getMaCV()}">
+                                <div th:text="${chucVu.getTenChucVu()}"></div>
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phòng ban</td>
+                    <td>
+                        <select name="maPBNhanVienNew">
+                            <option th:each="phongBan : ${phongBanList}" th:value="${phongBan.getMaPB()}">
+                                <div th:text="${phongBan.getTenPB()}"></div>
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lương cơ bản</td>
+                    <td>
+                        <input type="text" id="luongCoBan" name="luongCoBan">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hệ số lương</td>
+                    <td>
+                        <input type="text" id="heSoLuong" name="heSoLuong">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hệ số phụ cấp</td>
+                    <td>
+                        <input id="heSoPhuCap" name="heSoPhuCap">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ảnh đại diện</td>
+                    <td><input type="file" name="avatarStaffNew" class="form-control-file"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Thêm nhân viên">
+                        <input type="hidden" name="addStaffConfirm" value="yes">
+                        <input type="hidden" name="vaiTroTaiKhoan" id="vaiTroTaiKhoan" value="USER">
+                    </td>
+                    <td><a href="/home">Về trang chủ</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        $(".add-employee").find("#select-office").find("option").each(function (){
+            $(this).html($(this).val());
+        });
+        $("#select-office").change(function (){
+            $("#select-office option:selected").each(function (){
+                $("#tenCVaddSatff").val($(this).text());
+            });
+        });
+    });
+</script>
+</html>

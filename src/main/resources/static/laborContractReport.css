@@ -1,0 +1,15 @@
+table, th, td, tr
+{
+    border: 1px solid black;
+    text-align: center;
+}
+.container-table
+{
+    display: flex;
+    justify-content: center;
+}
+.container-signature
+{
+    display: flex;
+    justify-content: space-around;
+}

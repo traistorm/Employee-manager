@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{css/PB_CV.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="content">
+        <h1><i class="far fa-building"></i> Thông tin chức vụ - phòng ban làm việc</h1>
+        <div>
+            <h2>Thông tin phòng ban làm việc hiện tại</h2>
+            <form th:action="@{/home}" method="post">
+                <table>
+                    <tr>
+                        <td>Tên phòng ban</td>
+                        <td>
+                            <div>
+                                <select name="maPB" id="maPB">
+                                    <div th:each="phongBan : ${phongBanList}">
+                                        <option th:if="${phongBan.getMaPB() == phongBanNhanVien.getMaPB()}" th:value="${phongBan.getMaPB()}" selected>
+                                            <div th:text="${phongBan.getTenPB()}"></div>
+                                        </option>
+                                        <option th:if="${phongBan.getMaPB() != phongBanNhanVien.getMaPB()}" th:value="${phongBan.getMaPB()}">
+                                            <div th:text="${phongBan.getTenPB()}"></div>
+                                        </option>
+                                    </div>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại phòng ban</td>
+                        <td><div th:text="${phongBanNhanVien.getSDTPB()}"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><div th:text="${phongBanNhanVien.getEmailPB()}"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ phòng ban</td>
+                        <td><div th:text="${phongBanNhanVien.getDiaChiPB()}"></div></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Lưu thông tin">
+                            <input type="hidden" name="MSNV" th:value="${nhanVien.getMSNV()}">
+                            <input type="hidden" name="changeDepartmentStaffConfirm" value="yes">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div>
+            <h2>Thông tin chức vụ hiện tại</h2>
+            <div>
+                <form th:action="@{/home}" th:object="${chiTietChucVuNew}" method="post">
+                    <table>
+                        <tr>
+                            <td>Tên chức vụ</td>
+                            <td>
+                                <div th:if="${chucVuFound == 'no'}">
+                                    <div>(Hiện tại nhân viên chưa có chức vụ nào!)</div>
+                                    <div>
+                                        <select name="maCV" id="maCV">
+                                            <div th:each="chucVu : ${chucVuList}">
+                                                <option th:value="${chucVu.getMaCV()}">
+                                                    <div th:text="${chucVu.getTenChucVu()}"></div>
+                                                </option>
+                                            </div>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div th:if="${chucVuFound == 'yes'}">
+                                    <div>
+                                        <select name="maCV" id="maCV">
+                                            <div th:each="chucVu : ${chucVuList}">
+                                                <option th:if="${chucVu.getMaCV() == chiTietChucVuHienTai.getMaCV()}" th:value="${chucVu.getMaCV()}" selected>
+                                                    <div th:text="${chucVu.getTenChucVu()}"></div>
+                                                </option>
+                                                <option th:if="${chucVu.getMaCV() != chiTietChucVuHienTai.getMaCV()}" th:value="${chucVu.getMaCV()}">
+                                                    <div th:text="${chucVu.getTenChucVu()}"></div>
+                                                </option>
+                                            </div>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Lưu thông tin">
+                                <input type="hidden" name="MSNV" id="MSNV" th:value="${nhanVien.getMSNV()}">
+                                <input type="hidden" name="addOfficeDetailNewConfirm" value="yes">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div>
+            <h2>Thông tin các chức vụ nhân viên đã nắm giữ</h2>
+            <div>
+                <form th:action="@{/home}" th:object="${chiTietChucVuEdit}" method="post">
+                    <table th:each="chiTietChucVu : ${chiTietChucVuNhanVienList}">
+                        <tr>
+                            <td>Mã chức vụ</td>
+                            <td><div th:text="${chiTietChucVu.getMaCV()}"></div></td>
+                            <input type="hidden" th:value="${chiTietChucVu.getMaCV()}" id="maCV" name="maCV">
+                        </tr>
+                        <tr>
+                            <td>Tên chức vụ</td>
+                            <div th:each="chucVu : ${chucVuList}" th:if="${chucVu.getMaCV() == chiTietChucVu.getMaCV()}">
+                                <td><div th:text="${chucVu.getTenChucVu()}"></div></td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <td>Ngày bắt đầu chức vụ</td>
+                            <td>
+                                <input th:value="${chiTietChucVu.getNgayBatDauCV()}" type="Date" id="ngayBatDauCV" name="ngayBatDauCV">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ngày kết thúc chức vụ</td>
+                            <td>
+                                <input th:value="${chiTietChucVu.getNgayKetThucCV()}" type="Date" id="ngayKetThucCV" name="ngayKetThucCV">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="Lưu thông tin"></td>
+                            <td><a th:href="'/home?deleteOfficeDetailConfirm=yes&MSNV=' + ${nhanVien.getMSNV()} + '&maCV=' + ${chiTietChucVu.getMaCV()} + '&ngayBatDauCV=' + ${chiTietChucVu.getNgayBatDauCV()}"><i class="fas fa-trash-alt"></i></a></td>
+                        </tr>
+                    </table>
+                    <input type="hidden" name="MSNV" id="MSNV" th:value="${nhanVien.getMSNV()}">
+                    <input type="hidden" name="editOfficeDepartmentConfirm" value="yes">
+                </form>
+            </div>
+        </div>
+        <br>
+        <div><a href="/home">Về trang chủ</a></div>
+    </div>
+</body>
+</html>

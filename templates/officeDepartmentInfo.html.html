@@ -1,0 +1,168 @@
+<html>
+<head>
+<title>officeDepartmentInfo.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #e8bf6a;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bababa;}
+.s3 { color: #a5c261;}
+.s4 { color: #a9b7c6;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+officeDepartmentInfo.html</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;!DOCTYPE </span><span class="s2">html</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">xmlns</span><span class="s3">=&quot;http://www.w3.org/1999/xhtml&quot;</span>
+      <span class="s2">xmlns:th</span><span class="s3">=&quot;http://www.thymeleaf.org&quot;</span>
+      <span class="s2">xmlns:sec</span><span class="s3">=&quot;http://www.thymeleaf.org/extras/spring-security&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">lang</span><span class="s3">=&quot;en&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;head&gt;</span>
+    <span class="s0">&lt;meta </span><span class="s2">charset</span><span class="s3">=&quot;UTF-8&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;title&gt;</span><span class="s4">Title</span><span class="s0">&lt;/title&gt;</span>
+    <span class="s0">&lt;link </span><span class="s2">th:href</span><span class="s3">=&quot;@{staffDetail.css}&quot; </span><span class="s2">rel</span><span class="s3">=&quot;stylesheet&quot; </span><span class="s0">/&gt;</span>
+    <span class="s0">&lt;link </span><span class="s2">rel</span><span class="s3">=&quot;stylesheet&quot; </span><span class="s2">href</span><span class="s3">=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;script </span><span class="s2">src</span><span class="s3">=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js&quot;</span><span class="s0">&gt;&lt;/script&gt;</span>
+<span class="s0">&lt;/head&gt;</span>
+<span class="s0">&lt;body&gt;</span>
+    <span class="s0">&lt;div&gt;</span><span class="s4">THÔNG TIN CHỨC VỤ-PHÒNG BAN NHÂN VIÊN</span><span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;div&gt;</span>
+        <span class="s0">&lt;div&gt;</span><span class="s4">Thông tin phòng ban làm việc hiện tại</span><span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/home}&quot; </span><span class="s2">method</span><span class="s3">=&quot;get&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;table&gt;</span>
+                <span class="s0">&lt;tr&gt;</span>
+                    <span class="s0">&lt;td&gt;</span><span class="s4">Tên phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;</span>
+                        <span class="s0">&lt;div&gt;</span>
+                            <span class="s0">&lt;select </span><span class="s2">name</span><span class="s3">=&quot;maPB&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;phongBan : ${phongBanList}&quot;</span><span class="s0">&gt;</span>
+                                    <span class="s0">&lt;option </span><span class="s2">th:if</span><span class="s3">=&quot;${phongBan.getMaPB() == phongBanNhanVien.getMaPB()}&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${phongBan.getMaPB()}&quot; </span><span class="s2">selected</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${phongBan.getTenPB()}&quot;</span><span class="s0">&gt;&lt;/div&gt;</span>
+                                    <span class="s0">&lt;/option&gt;</span>
+                                    <span class="s0">&lt;option </span><span class="s2">th:if</span><span class="s3">=&quot;${phongBan.getMaPB() != phongBanNhanVien.getMaPB()}&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${phongBan.getMaPB()}&quot;</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${phongBan.getTenPB()}&quot;</span><span class="s0">&gt;&lt;/div&gt;</span>
+                                    <span class="s0">&lt;/option&gt;</span>
+                                <span class="s0">&lt;/div&gt;</span>
+                            <span class="s0">&lt;/select&gt;</span>
+                        <span class="s0">&lt;/div&gt;</span>
+                    <span class="s0">&lt;/td&gt;</span>
+                <span class="s0">&lt;/tr&gt;</span>
+                <span class="s0">&lt;tr&gt;</span>
+                    <span class="s0">&lt;td&gt;</span><span class="s4">Số điện thoại phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${phongBanNhanVien.getSDTPB()}&quot;</span><span class="s0">&gt;&lt;/div&gt;&lt;/td&gt;</span>
+                <span class="s0">&lt;/tr&gt;</span>
+                <span class="s0">&lt;tr&gt;</span>
+                    <span class="s0">&lt;td&gt;</span><span class="s4">Email</span><span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${phongBanNhanVien.getEmailPB()}&quot;</span><span class="s0">&gt;&lt;/div&gt;&lt;/td&gt;</span>
+                <span class="s0">&lt;/tr&gt;</span>
+                <span class="s0">&lt;tr&gt;</span>
+                    <span class="s0">&lt;td&gt;</span><span class="s4">Địa chỉ phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${phongBanNhanVien.getDiaChiPB()}&quot;</span><span class="s0">&gt;&lt;/div&gt;&lt;/td&gt;</span>
+                <span class="s0">&lt;/tr&gt;</span>
+                <span class="s0">&lt;tr&gt;</span>
+                    <span class="s0">&lt;td&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Lưu thông tin&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;changeDepartmentStaffConfirm&quot; </span><span class="s2">value</span><span class="s3">=&quot;yes&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;#&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-trash-alt&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                <span class="s0">&lt;/tr&gt;</span>
+            <span class="s0">&lt;/table&gt;</span>
+        <span class="s0">&lt;/form&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;div&gt;</span>
+        <span class="s0">&lt;div&gt;</span><span class="s4">Thông tin chức vụ hiện tại</span><span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;div&gt;</span>
+            <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/home}&quot; </span><span class="s2">th:object</span><span class="s3">=&quot;${chiTietChucVuNew}&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;table&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Tên chức vụ</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;</span>
+                            <span class="s0">&lt;div </span><span class="s2">th:if</span><span class="s3">=&quot;${chucVuFound == 'no'}&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;div&gt;</span><span class="s4">(Hiện tại nhân viên chưa có chức vụ nào!)</span><span class="s0">&lt;/div&gt;</span>
+                                <span class="s0">&lt;div&gt;</span>
+                                    <span class="s0">&lt;select </span><span class="s2">name</span><span class="s3">=&quot;maCV&quot; </span><span class="s2">id</span><span class="s3">=&quot;maCV&quot;</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;chucVu : ${chucVuList}&quot;</span><span class="s0">&gt;</span>
+                                            <span class="s0">&lt;option </span><span class="s2">th:value</span><span class="s3">=&quot;${chucVu.getMaCV()}&quot;</span><span class="s0">&gt;</span>
+                                                <span class="s0">&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${chucVu.getTenChucVu()}&quot;</span><span class="s0">&gt;&lt;/div&gt;</span>
+                                            <span class="s0">&lt;/option&gt;</span>
+                                        <span class="s0">&lt;/div&gt;</span>
+                                    <span class="s0">&lt;/select&gt;</span>
+                                <span class="s0">&lt;/div&gt;</span>
+                            <span class="s0">&lt;/div&gt;</span>
+                            <span class="s0">&lt;div </span><span class="s2">th:if</span><span class="s3">=&quot;${chucVuFound == 'yes'}&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;div&gt;</span>
+                                    <span class="s0">&lt;select </span><span class="s2">name</span><span class="s3">=&quot;maCV&quot; </span><span class="s2">id</span><span class="s3">=&quot;maCV&quot;</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;chucVu : ${chucVuList}&quot;</span><span class="s0">&gt;</span>
+                                            <span class="s0">&lt;option </span><span class="s2">th:if</span><span class="s3">=&quot;${chucVu.getMaCV() == chiTietChucVuHienTai.getMaCV()}&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${chucVu.getMaCV()}&quot; </span><span class="s2">selected</span><span class="s0">&gt;</span>
+                                                <span class="s0">&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${chucVu.getTenChucVu()}&quot;</span><span class="s0">&gt;&lt;/div&gt;</span>
+                                            <span class="s0">&lt;/option&gt;</span>
+                                            <span class="s0">&lt;option </span><span class="s2">th:if</span><span class="s3">=&quot;${chucVu.getMaCV() != chiTietChucVuHienTai.getMaCV()}&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${chucVu.getMaCV()}&quot;</span><span class="s0">&gt;</span>
+                                                <span class="s0">&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${chucVu.getTenChucVu()}&quot;</span><span class="s0">&gt;&lt;/div&gt;</span>
+                                            <span class="s0">&lt;/option&gt;</span>
+                                        <span class="s0">&lt;/div&gt;</span>
+                                    <span class="s0">&lt;/select&gt;</span>
+                                <span class="s0">&lt;/div&gt;</span>
+                            <span class="s0">&lt;/div&gt;</span>
+                        <span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Đổi chức vụ&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;MSNV&quot; </span><span class="s2">id</span><span class="s3">=&quot;MSNV&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;changeOfficeStaffConfirm&quot; </span><span class="s2">value</span><span class="s3">=&quot;yes&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                <span class="s0">&lt;/table&gt;</span>
+            <span class="s0">&lt;/form&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;div&gt;</span>
+        <span class="s0">&lt;div&gt;</span><span class="s4">Thông tin các chức vụ nhân viên đã nắm giữ</span><span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;div&gt;</span>
+            <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/home}&quot; </span><span class="s2">th:object</span><span class="s3">=&quot;${chiTietChucVuEdit}&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;table </span><span class="s2">th:each</span><span class="s3">=&quot;chiTietChucVu : ${chiTietChucVuNhanVienList}&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Mã chức vụ</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${chiTietChucVu.getMaCV()}&quot;</span><span class="s0">&gt;&lt;/div&gt;&lt;/td&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${chiTietChucVu.getMaCV()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;maCV&quot; </span><span class="s2">name</span><span class="s3">=&quot;maCv&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Tên chức vụ</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;chucVu : ${chucVuList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${chucVu.getMaCV() == chiTietChucVu.getMaCV()}&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;td&gt;&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${chucVu.getTenChucVu()}&quot;</span><span class="s0">&gt;&lt;/div&gt;&lt;/td&gt;</span>
+                        <span class="s0">&lt;/div&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Ngày bắt đầu chức vụ</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${chiTietChucVu.getNgayBatDauCV()}&quot; </span><span class="s2">type</span><span class="s3">=&quot;Date&quot; </span><span class="s2">id</span><span class="s3">=&quot;ngayBatDauCVNew&quot; </span><span class="s2">name</span><span class="s3">=&quot;ngayBatDauCVNew&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${chiTietChucVu.getNgayBatDauCV()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;ngayBatDauCV&quot; </span><span class="s2">name</span><span class="s3">=&quot;ngayBatDauCV&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Ngày kết thúc chức vụ</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${chiTietChucVu.getNgayKetThucCV()}&quot; </span><span class="s2">type</span><span class="s3">=&quot;Date&quot; </span><span class="s2">id</span><span class="s3">=&quot;ngayKetThucCVNew&quot; </span><span class="s2">name</span><span class="s3">=&quot;ngayKetThucCVNew&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${chiTietChucVu.getNgayKetThucCV()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;ngayKetThucCV&quot; </span><span class="s2">name</span><span class="s3">=&quot;ngayKetThucCV&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Lưu thông tin&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;#&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-trash-alt&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                <span class="s0">&lt;/table&gt;</span>
+                <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;MSNV&quot; </span><span class="s2">id</span><span class="s3">=&quot;MSNV&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;editOfficeDepartmentConfirm&quot; </span><span class="s2">value</span><span class="s3">=&quot;yes&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;/form&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;br&gt;</span>
+    <span class="s0">&lt;div&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;/home&quot;</span><span class="s0">&gt;</span><span class="s4">Về trang chủ</span><span class="s0">&lt;/a&gt;&lt;/div&gt;</span>
+<span class="s0">&lt;/body&gt;</span>
+<span class="s0">&lt;/html&gt;</span></pre>
+</body>
+</html>

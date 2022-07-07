@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{css/nhanVien.css}" rel="stylesheet" th:if="${pageView == '1'}" />
+    <link th:href="@{css/quanLyChucVu.css}" rel="stylesheet" th:if="${pageView == '2'}" />
+    <link th:href="@{css/quanLyPhongBan.css}" rel="stylesheet" th:if="${pageView == '3'}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        <div class="header">
+            <ul>
+                <li><a href="/home?pageView=1">Nhân viên</a></li>
+                <li><a href="/home?pageView=2">Chức vụ</a></li>
+                <li><a href="/home?pageView=3">Phòng ban</a></li>
+                <li><a href="/laborContractReport" target="_blank">Báo cáo hợp đồng</a> </li>
+                <li><a href="/salaryReport" target="_blank">Báo cáo lương</a></li>
+                <li><a th:href="@{/changePasswordAdmin}">Đổi mật khẩu</a></li>
+                <li><a class="logoutLink" href="/">Logout</a></li>
+                <form th:action="@{/logout}" method="post" name="logoutForm" th:hidden="true">
+                    <input type="submit" value="Logout" />
+                </form>
+            </ul>
+        </div>
+        <div class="employee-manager-container" th:if="${pageView == '1'}">
+            <br>
+            <h2><a th:href="@{/addStaff}">Thêm nhân viên</a></h2>
+            <br>
+            <div>
+                <div>Tìm kiếm nhân viên</div>
+                <div>
+                    <form th:action="@{/home}" method="get">
+                        <input type="text" placeholder="Nhập tên nhân viên" name="hoTen" id="hoTen">
+                        <input type="hidden" name="pageView" value="1">
+                        <input type="hidden" name="searchNhanVien" value="yes">
+                        <input type="text" name="MSNV" placeholder="Mã số nhân viên">
+                        <input type="text" name="email" id="email" placeholder="email">
+                        <input type="text" name="SDT" id="SDT" placeholder="Số điện thoại">
+                        <input type="text" name="danToc" id="danToc" placeholder="Dân tộc">
+                        <input type="text" name="queQuan" id="queQuan" placeholder="Quê quán">
+                        <input type="text" name="diaChiHienTai" id="diaChiHienTai" placeholder="Địa chỉ hiện tại">
+                        <span>Giới tính</span>
+                        <select name="gioiTinh" id="gioiTinh">
+                            <option value="All">All</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                            <option value="Không rõ">Không rõ</option>
+                        </select>
+                        <span>Ngày sinh </span>
+                        <input type="date" name="ngaySinh" id="ngaySinh" value="6-7-2021">
+                        <br>
+                        <br>
+                        <input type="submit" value="Tìm kiếm">
+                    </form>
+                </div>
+            </div>
+            <br>
+            <h1>Danh sách nhân viên</h1>
+            <table class="employee-manager-table">
+                <tr>
+                    <th>Mã số nhân viên</th>
+                    <th>Ảnh đại diện</th>
+                    <th>Tên nhân viên</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Ngày sinh</th>
+                    <th>Quê quán</th>
+                    <th>Địa chỉ hiện tại</th>
+                    <th>Giới tính</th>
+                    <th>Dân tộc</th>
+                    <th>Thông tin cá nhân</th>
+                    <th>Thông tin đăng nhập</th>
+                    <th>Hợp đồng lao động</th>
+                    <th>Phòng ban-Chức vụ</th>
+                    <th>Thông tin lương</th>
+                    <th>Xoá nhân viên</th>
+                </tr>
+                <tr th:each="nhanVien : ${nhanVienList}" th:if="${isSearch == 'no'}">
+                    <td th:text="*{nhanVien.getMSNV()}"></td>
+                    <td class="avatar-staff-table">
+                        <img th:src="${'/img/' + nhanVien.getAnhDaiDien()}" alt="Ảnh đại diện">
+                    </td>
+                    <td th:text="*{nhanVien.getHoTen()}"></td>
+                    <td th:text="*{nhanVien.getEmail()}"></td>
+                    <td th:text="*{nhanVien.getSDT()}"></td>
+                    <td th:text="*{nhanVien.getNgaySinh()}"></td>
+                    <td th:text="*{nhanVien.getQueQuan()}"></td>
+                    <td th:text="*{nhanVien.getDiaChiHienTai()}"></td>
+                    <td th:text="*{nhanVien.getGioiTinh()}"></td>
+                    <td th:text="*{nhanVien.getDanToc()}"></td>
+                    <td><a th:href="${'/staffInfo?MSNV=' + nhanVien.getMSNV()}"><i class="fas fa-user-edit"></i></a></td>
+                    <td><a th:href="${'/loginInfo?MSNV=' + nhanVien.getMSNV()}"><i class="far fa-user"></i></a></td>
+                    <td><a th:href="${'/contractInfo?MSNV=' + nhanVien.getMSNV()}"><i class="fas fa-file-signature"></i></a></td>
+                    <td><a th:href="${'/officeDepartmentInfo?MSNV=' + nhanVien.getMSNV()}"><i class="fas fa-users"></i></a></td>
+                    <td><a th:href="${'/salaryInfo?MSNV=' + nhanVien.getMSNV()}"><i class="fas fa-money-check-alt"></i></a></td>
+                    <td><a th:href="${'/home?deleteStaffConfirm=yes&MSNV=' + nhanVien.getMSNV()}" class="delete-staff-link"><i class="fas fa-trash-alt delete-confirmation"></i></a></td>
+                </tr>
+                <tr th:each="nhanVien : ${nhanVienListSearch}" th:if="${isSearch == 'yes'}">
+                    <td th:text="*{nhanVien.getMSNV()}"></td>
+                    <td class="avatar-staff-table">
+                        <img th:src="${'/img/' + nhanVien.getAnhDaiDien()}" alt="Ảnh đại diện">
+                    </td>
+                    <td th:text="*{nhanVien.getHoTen()}"></td>
+                    <td th:text="*{nhanVien.getEmail()}"></td>
+                    <td th:text="*{nhanVien.getSDT()}"></td>
+                    <div th:each="phongBan : ${phongBanList}" th:if="${phongBan.getMaPB() == nhanVien.getMaPB()}">
+                        <td th:text="*{phongBan.getTenPB()}"></td>
+                    </div>
+                    <td th:text="*{nhanVien.getNgaySinh()}"></td>
+                    <td th:text="*{nhanVien.getQueQuan()}"></td>
+                    <td th:text="*{nhanVien.getGioiTinh()}"></td>
+                    <td th:text="*{nhanVien.getDanToc()}"></td>
+                    <td><a th:href="${'/staffInfo?MSNV=' + nhanVien.getMSNV()}"><i class="fas fa-user-edit"></i></a></td>
+                    <td><a th:href="${'/loginInfo?MSNV=' + nhanVien.getMSNV()}"><i class="far fa-user"></i></a></td>
+                    <td><a th:href="${'/contractInfo?MSNV=' + nhanVien.getMSNV()}"><i class="fas fa-file-signature"></i></a></td>
+                    <td><a th:href="${'/officeDepartmentInfo?MSNV=' + nhanVien.getMSNV()}"><i class="fas fa-users"></i></a></td>
+                    <td><a th:href="${'/salaryInfo?MSNV=' + nhanVien.getMSNV()}"><i class="fas fa-money-check-alt"></i></a></td>
+                    <td><a th:href="${'/home?deleteStaffConfirm=yes&MSNV=' + nhanVien.getMSNV()}" class="delete-staff-link"><i class="fas fa-trash-alt delete-confirmation"></i></a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="office-manager" th:if="${pageView == '2'}">
+            <p>QUẢN LÝ CHỨC VỤ</p>
+            <br>
+            <div>
+                <div>Thêm chức vụ mới</div>
+                <div>
+                    <form th:action="@{/home}" th:object="${chucVuNew}" method="post">
+                        <table>
+                            <tr>
+                                <td>Mã chức vụ</td>
+                                <td><input id="maCv" name="maCV" placeholder="Mã chức vụ" required></td>
+                            </tr>
+                            <tr>
+                                <td>Tên chức vụ</td>
+                                <td><input id="tenChucVu" name="tenChucVu" placeholder="Tên chức vụ" required></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" value="Thêm chức vụ">
+                                    <input type="hidden" name="pageView" value="2">
+                                    <input type="hidden" name="addOfficeNewConfirm" value="yes">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <h1>Danh sách các chức vụ đã có</h1>
+                <div th:each="chucVu : ${chucVuList}">
+                    <form th:action="@{/home}" th:object="${chucVuEdit}" method="post">
+                        <table>
+                            <tr>
+                                <td>Mã chức vụ</td>
+                                <td><input th:value="${chucVu.getMaCV()}" id="maCV" name="maCV"></td>
+                            </tr>
+                            <tr>
+                                <td>Tên chức vụ</td>
+                                <td><input th:value="${chucVu.getTenChucVu()}" id="tenChucVu" name="tenChucVu"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" value="Lưu thông tin">
+                                    <input type="hidden" name="pageView" value="2">
+                                    <input type="hidden" name="changeInfoOfficeConfirm" value="yes">
+                                    <input type="hidden" name="maCVCurrent" th:value="${chucVu.getMaCV()}">
+                                </td>
+                                <td><a th:href="'/home?deleteOfficeConfirm=yes&pageView=2&maCV=' + ${chucVu.getMaCV()}"><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="department-manager-container" th:if="${pageView == '3'}">
+            <p>QUẢN LÝ PHÒNG BAN</p>
+            <br>
+            <div>
+                <div>Thêm phòng ban mới</div>
+                <div>
+                    <form th:action="@{/home}" th:object="${phongBanNew}" method="post">
+                        <table>
+                            <tr>
+                                <td>Mã phòng ban</td>
+                                <td><input id="maPB" name="maPB" placeholder="Mã phòng ban" required></td>
+                            </tr>
+                            <tr>
+                                <td>Tên phòng ban</td>
+                                <td><input id="tenPB" name="tenPB" placeholder="Tên phòng ban" required></td>
+                            </tr>
+                            <tr>
+                                <td>Số điện thoại phòng ban</td>
+                                <td><input id="SDTPB" name="SDTPB" placeholder="Số điện thoại phòng ban" required></td>
+                            </tr>
+                            <tr>
+                                <td>Email phòng ban</td>
+                                <td><input id="emailPB" name="emailPB" placeholder="Email phòng ban" required></td>
+                            </tr>
+                            <tr>
+                                <td>Địa chỉ phòng ban</td>
+                                <td><input id="diaChiPB" name="diaChiPB" placeholder="Địa chỉ phòng ban" required></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" value="Thêm phòng ban">
+                                    <input type="hidden" name="pageView" value="3">
+                                    <input type="hidden" name="addDepartmentConfirm" value="yes">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <h1>Danh sách các phòng ban đã có</h1>
+                <div th:each="phongBan : ${phongBanList}">
+                    <form th:action="@{/home}" th:object="${phongBanEdit}" method="post">
+                        <table>
+                            <tr>
+                                <td>Mã phòng ban</td>
+                                <td><input th:value="${phongBan.getMaPB()}" id="maPB" name="maPB"></td>
+                            </tr>
+                            <tr>
+                                <td>Tên phòng ban</td>
+                                <td><input th:value="${phongBan.getTenPB()}" id="tenPB" name="tenPB"></td>
+                            </tr>
+                            <tr>
+                                <td>Số điện thoại phòng ban</td>
+                                <td><input th:value="${phongBan.getSDTPB()}" id="SDTPB" name="SDTPB"></td>
+                            </tr>
+                            <tr>
+                                <td>Email phòng ban</td>
+                                <td><input th:value="${phongBan.getEmailPB()}" id="emailPB" name="emailPB"></td>
+                            </tr>
+                            <tr>
+                                <td>Địa chỉ phòng ban</td>
+                                <td><input th:value="${phongBan.getDiaChiPB()}" id="diaChiPB" name="diaChiPB"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" value="Lưu thông tin">
+                                    <input type="hidden" name="maPBCurrent" th:value="${phongBan.getMaPB()}">
+                                    <input type="hidden" name="pageView" value="3">
+                                    <input type="hidden" name="changeInfoDepartmentConfirm" value="yes">
+                                </td>
+                                <td><a th:href="'/home?deleteDepartmentConfirm=yes&pageView=3&maPB=' + ${phongBan.getMaPB()}"><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div><a href="/home">Về trang chủ</a></div>
+        </div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-container">
+            <h1>Xoá nhân viên!</h1>
+            <p>Bạn muốn xoá nhân viên này?</p>
+            <p>Việc này sẽ xoá toàn bộ thông tin liên quan tới hợp đồng, lương, chức vụ và phòng ban nhân viên !</p>
+            <div class="clearfix">
+                <button type="button" class="modal-cancel-button">Cancel</button>
+                <button type="button" class="modal-delete-button">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div id="delete-labor-contract-modal" class="delete-labor-contract-modal">
+        <div class="delete-labor-contract-modal-container">
+            <h1>Xoá hợp đồng!</h1>
+            <p>Bạn muốn xoá hợp đồng này?</p>
+            <div class="clearfix">
+                <button type="button" class="modal-cancel-labor-contract-button">Cancel</button>
+                <button type="button" class="modal-delete-labor-contract-button">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div id="delete-info-login-modal" class="delete-info-login-modal">
+        <div class="delete-info-login-modal-container">
+            <h1>Xoá thông tin đăng nhập</h1>
+            <p>Bạn chắc muốn xoá thông tin đăng nhập này?</p>
+            <div class="clearfix">
+                <button type="button" class="modal-cancel-info-login-button">Cancel</button>
+                <button type="button" class="modal-delete-info-login-button">Delete</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div>
+        <strong>
+            <i style="color: #ff0000" th:text="${'Thông báo : ' + errorMessage}" th:if="${errorMessage != ''}"></i>
+        </strong>
+        <strong>
+            <i style="color: #ff0000" th:text="${'Thông báo : ' + message}" th:if="${message != ''}"></i>
+        </strong>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        var deleteInfoLoginButtonCurrent;
+        var deleteStaffButtonCurrent;
+        var deleteLaborContractCurrent;
+        $(".salary-manager-row").each(function (index, element){
+            var numberWorkVal = $(element).find(".number-work-value").html();
+            numberWorkVal = Number(numberWorkVal);
+            $(element).find(".number-work-input").val(numberWorkVal);
+        });
+        $(".add-1-day").click( function (){
+            var numberWork = $(this).parent().find(".number-work-input").val();
+            var MSNV = $(this).parent().children(".MSNV").html();
+            numberWork = Number(numberWork) + 1;
+            $(this).parent().find(".number-work-input").val(numberWork);
+            $(this).parent().find(".link-save").attr("href", "/home?pageView=2&numberWork=" + numberWork + "&MSNV=" + MSNV);
+       });
+        $(".delete-1-day").click( function (){
+            var numberWork = $(this).parent().find(".number-work-input").val();
+            var MSNV = $(this).parent().children(".MSNV").html();
+            numberWork = Number(numberWork);
+            if (numberWork > 0)
+            {
+                numberWork -= 1;
+            }
+            $(this).parent().find(".number-work-input").val(numberWork);
+            $(this).parent().find(".link-save").attr("href", "/home?pageView=2&numberWork=" + numberWork + "&MSNV=" + MSNV);
+        });
+        $(".delete-confirmation").click( function (e){
+           e.preventDefault();
+           $(".modal").show();
+           deleteStaffButtonCurrent = this;
+        });
+        $(".modal-cancel-button").click( function (){
+            $(".modal").hide();
+        });
+        $(".modal-delete-button").click( function (e){
+            $(".modal").hide();
+            window.location.href = $(deleteStaffButtonCurrent).parent().attr("href");
+        });
+        $(".delete-labor-contract-confirmation").click( function (e){
+            e.preventDefault();
+            $(".delete-labor-contract-modal").show();
+            deleteLaborContractCurrent = this;
+        });
+        $(".modal-cancel-labor-contract-button").click( function (){
+            $(".delete-labor-contract-modal").hide();
+        });
+        $(".modal-delete-labor-contract-button").click( function (e){
+            $(".delete-labor-contract-modal").hide();
+            window.location.href = $(deleteLaborContractCurrent).parent().attr("href");
+        });
+        $(".delete-info-login-confirmation").click( function (e){
+            e.preventDefault();
+            $(".delete-info-login-modal").show();
+            deleteInfoLoginButtonCurrent = this;
+        });
+        $(".modal-cancel-info-login-button").click( function (){
+            $(".delete-info-login-modal").hide();
+        });
+        $(".modal-delete-info-login-button").click( function (e){
+            $(".delete-info-login-modal").hide();
+            window.location.href = $(deleteInfoLoginButtonCurrent).parent().attr("href");
+        });
+        $(".logoutLink").on("click", function(e) {
+            e.preventDefault();
+            document.logoutForm.submit();
+        });
+    });
+</script>
+</html>
+

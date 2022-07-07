@@ -1,0 +1,165 @@
+html{
+    font-size: 15px;
+    font-family: sans-serif;
+    background-image: url(../img/pexels-anete-lusina-4792285.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;
+}
+.header{
+    list-style: none;
+    background-color: #575fcf;
+    border-radius: 20px;
+    position: fixed;
+    top: 10px;
+    left: 540px;
+}
+
+.header li{
+    display: inline-block;
+    margin-right: 30px;
+
+}
+
+.header ul li a:link{
+    text-decoration: none!important;
+    color: white;
+    font-size: 150%;
+    font-weight: 500;
+    transition: all 0.5s;
+}
+.header ul li a:visited{
+    text-decoration: none!important;
+    color: white;
+    font-size: 150%;
+    font-weight: 500;
+    transition: all 0.5s;
+}
+.header ul li a:hover,
+.header ul li a:active{
+    border-bottom: 3px solid white;
+    text-decoration: none!important;
+}
+h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:30px;
+    font-weight: bold;
+    color: rgb(136, 88, 199);
+    text-align: left;
+}
+p{
+    text-align: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:23px;
+    font-weight: bold;
+    color: rgb(167, 99, 23);
+    margin-right: 10px;
+}
+h1{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:16px;
+    font-weight: normal;
+    color: rgb(37, 58, 85);
+    margin-right: 10px;
+}
+/*header*/
+/*content*/
+.employee-manager-container{
+    background-color: whitesmoke;
+    border-radius: 10px;
+    width: 95%;
+    margin: 0px auto;
+    margin-top: 140px;
+    padding: 30px;
+    font-size: 130%;
+    overflow: hidden; /* Khắc phục lỗi 2 float không background đủ content */
+}
+.info{
+    float: left;
+}
+
+.avatar-staff-table{
+    float: right;
+    padding-right: 40px;
+}
+
+.avatar-staff-table img{
+    margin: 10px;
+    height: 50px;
+    width: 50px;
+}
+
+.avatar-staff-table a{
+    text-decoration: none;
+    padding: 3px;
+    color: white;
+    border-radius: 3px;
+    background-color: #0fbcf9;
+}
+
+.avatar-staff-table a:hover,
+.avatar-staff-table a:active{
+    box-shadow: 3px 3px 7px 2px #485460;
+}
+
+table {
+    border-collapse: collapse;
+}
+table {
+    width: 100%;
+}
+th {
+    background-color: #175996;
+    color: white;
+}
+table, th, td {
+    border: 1px solid rgb(221, 201, 163);
+}
+.table tr td {
+    border-top: 1px solid #ddd !important;
+    border-left: 0px;
+}
+td {
+    height: 110px;
+    vertical-align: middle;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    text-align: left;
+}
+
+.table-bordered tr td ul {
+    margin-left: 10px;
+}
+
+tr:hover {
+    background-color: #f1efef;
+}
+.modal, .delete-labor-contract-modal, .delete-info-login-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(107, 104, 104, 0.5);
+    padding-top: 50px;
+}
+.modal-container, .delete-labor-contract-modal-container, .delete-info-login-modal-container {
+    padding: 16px;
+    text-align: center;
+    background-color: #5d5b5b;
+    width: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+a:link{
+    text-decoration: none;
+}

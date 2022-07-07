@@ -1,0 +1,397 @@
+<html>
+<head>
+<title>homeAdmin.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #e8bf6a;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bababa;}
+.s3 { color: #a5c261;}
+.s4 { color: #a9b7c6;}
+.s5 { color: #6897bb;}
+.s6 { color: #cc7832;}
+.s7 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+homeAdmin.html</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;!DOCTYPE </span><span class="s2">html</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">xmlns</span><span class="s3">=&quot;http://www.w3.org/1999/xhtml&quot;</span>
+      <span class="s2">xmlns:th</span><span class="s3">=&quot;http://www.thymeleaf.org&quot;</span>
+      <span class="s2">xmlns:sec</span><span class="s3">=&quot;http://www.thymeleaf.org/extras/spring-security&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">lang</span><span class="s3">=&quot;en&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;head&gt;</span>
+    <span class="s0">&lt;meta </span><span class="s2">charset</span><span class="s3">=&quot;UTF-8&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;title&gt;</span><span class="s4">Title</span><span class="s0">&lt;/title&gt;</span>
+    <span class="s0">&lt;link </span><span class="s2">th:href</span><span class="s3">=&quot;@{main.css}&quot; </span><span class="s2">rel</span><span class="s3">=&quot;stylesheet&quot; </span><span class="s0">/&gt;</span>
+    <span class="s0">&lt;link </span><span class="s2">rel</span><span class="s3">=&quot;stylesheet&quot; </span><span class="s2">href</span><span class="s3">=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;script </span><span class="s2">src</span><span class="s3">=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js&quot;</span><span class="s0">&gt;&lt;/script&gt;</span>
+<span class="s0">&lt;/head&gt;</span>
+<span class="s0">&lt;body&gt;</span>
+    <span class="s0">&lt;div&gt;</span>
+        <span class="s0">&lt;div&gt;</span>
+            <span class="s0">&lt;ul&gt;</span>
+                <span class="s0">&lt;li&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;/home?pageView=1&quot;</span><span class="s0">&gt;</span><span class="s4">Nhân viên</span><span class="s0">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="s0">&lt;li&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;/home?pageView=2&quot;</span><span class="s0">&gt;</span><span class="s4">Chức vụ</span><span class="s0">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="s0">&lt;li&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;/home?pageView=3&quot;</span><span class="s0">&gt;</span><span class="s4">Phòng ban</span><span class="s0">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="s0">&lt;li&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;/laborContractReport&quot; </span><span class="s2">target</span><span class="s3">=&quot;_blank&quot;</span><span class="s0">&gt;</span><span class="s4">Báo cáo hợp đồng</span><span class="s0">&lt;/a&gt; &lt;/li&gt;</span>
+                <span class="s0">&lt;li&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;/diligenceReport&quot; </span><span class="s2">target</span><span class="s3">=&quot;_blank&quot;</span><span class="s0">&gt;</span><span class="s4">Báo cáo chuyên cần</span><span class="s0">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="s0">&lt;li&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;/salaryReport&quot; </span><span class="s2">target</span><span class="s3">=&quot;_blank&quot;</span><span class="s0">&gt;</span><span class="s4">Báo cáo lương tháng</span><span class="s0">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="s0">&lt;li&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;@{/changePasswordAdmin}&quot;</span><span class="s0">&gt;</span><span class="s4">Đổi mật khẩu</span><span class="s0">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="s0">&lt;li&gt;&lt;a </span><span class="s2">class</span><span class="s3">=&quot;logoutLink&quot; </span><span class="s2">href</span><span class="s3">=&quot;/&quot;</span><span class="s0">&gt;</span><span class="s4">Logout</span><span class="s0">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/logout}&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot; </span><span class="s2">name</span><span class="s3">=&quot;logoutForm&quot; </span><span class="s2">th:hidden</span><span class="s3">=&quot;true&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Logout&quot; </span><span class="s0">/&gt;</span>
+                <span class="s0">&lt;/form&gt;</span>
+            <span class="s0">&lt;/ul&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;employee-manager-container&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${pageView == '1'}&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;br&gt;</span>
+            <span class="s0">&lt;div&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;@{/addStaff}&quot;</span><span class="s0">&gt;</span><span class="s4">Thêm nhân viên</span><span class="s0">&lt;/a&gt;&lt;/div&gt;</span>
+            <span class="s0">&lt;br&gt;</span>
+            <span class="s0">&lt;div&gt;</span>
+                <span class="s0">&lt;div&gt;</span><span class="s4">Tìm kiếm nhân viên</span><span class="s0">&lt;/div&gt;</span>
+                <span class="s0">&lt;div&gt;</span>
+                    <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/home}&quot; </span><span class="s2">method</span><span class="s3">=&quot;get&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;text&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Nhập tên nhân viên&quot; </span><span class="s2">name</span><span class="s3">=&quot;hoTen&quot; </span><span class="s2">id</span><span class="s3">=&quot;hoTen&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;pageView&quot; </span><span class="s2">value</span><span class="s3">=&quot;1&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;searchNhanVien&quot; </span><span class="s2">value</span><span class="s3">=&quot;yes&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;text&quot; </span><span class="s2">name</span><span class="s3">=&quot;MSNV&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Mã số nhân viên&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;text&quot; </span><span class="s2">name</span><span class="s3">=&quot;email&quot; </span><span class="s2">id</span><span class="s3">=&quot;email&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;email&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;text&quot; </span><span class="s2">name</span><span class="s3">=&quot;SDT&quot; </span><span class="s2">id</span><span class="s3">=&quot;SDT&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Số điện thoại&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;text&quot; </span><span class="s2">name</span><span class="s3">=&quot;danToc&quot; </span><span class="s2">id</span><span class="s3">=&quot;danToc&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Dân tộc&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;text&quot; </span><span class="s2">name</span><span class="s3">=&quot;queQuan&quot; </span><span class="s2">id</span><span class="s3">=&quot;queQuan&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Quê quán&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;text&quot; </span><span class="s2">name</span><span class="s3">=&quot;diaChiHienTai&quot; </span><span class="s2">id</span><span class="s3">=&quot;diaChiHienTai&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Địa chỉ hiện tại&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;span&gt;</span><span class="s4">Giới tính</span><span class="s0">&lt;/span&gt;</span>
+                        <span class="s0">&lt;select </span><span class="s2">name</span><span class="s3">=&quot;gioiTinh&quot; </span><span class="s2">id</span><span class="s3">=&quot;gioiTinh&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;option </span><span class="s2">value</span><span class="s3">=&quot;All&quot;</span><span class="s0">&gt;</span><span class="s4">All</span><span class="s0">&lt;/option&gt;</span>
+                            <span class="s0">&lt;option </span><span class="s2">value</span><span class="s3">=&quot;Nam&quot;</span><span class="s0">&gt;</span><span class="s4">Nam</span><span class="s0">&lt;/option&gt;</span>
+                            <span class="s0">&lt;option </span><span class="s2">value</span><span class="s3">=&quot;Nữ&quot;</span><span class="s0">&gt;</span><span class="s4">Nữ</span><span class="s0">&lt;/option&gt;</span>
+                            <span class="s0">&lt;option </span><span class="s2">value</span><span class="s3">=&quot;Không rõ&quot;</span><span class="s0">&gt;</span><span class="s4">Không rõ</span><span class="s0">&lt;/option&gt;</span>
+                        <span class="s0">&lt;/select&gt;</span>
+                        <span class="s0">&lt;span&gt;</span><span class="s4">Ngày sinh </span><span class="s0">&lt;/span&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;date&quot; </span><span class="s2">name</span><span class="s3">=&quot;ngaySinh&quot; </span><span class="s2">id</span><span class="s3">=&quot;ngaySinh&quot; </span><span class="s2">value</span><span class="s3">=&quot;6-7-2021&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;br&gt;</span>
+                        <span class="s0">&lt;br&gt;</span>
+                        <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Tìm kiếm&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;/form&gt;</span>
+                <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;br&gt;</span>
+            <span class="s0">&lt;div&gt;</span><span class="s4">Danh sách nhân viên</span><span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;table </span><span class="s2">class</span><span class="s3">=&quot;employee-manager-table&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;tr&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Mã số nhân viên</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Ảnh đại diện</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Tên nhân viên</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Email</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Số điện thoại</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Ngày sinh</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Quê quán</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Địa chỉ hiện tại</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Giới tính</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Dân tộc</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Thông tin cá nhân</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Thông tin đăng nhập</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Hợp đồng lao động</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Phòng ban-Chức vụ</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Thông tin lương</span><span class="s0">&lt;/th&gt;</span>
+                    <span class="s0">&lt;th&gt;</span><span class="s4">Xoá nhân viên</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;/tr&gt;</span>
+                <span class="s0">&lt;tr </span><span class="s2">th:each</span><span class="s3">=&quot;nhanVien : ${nhanVienList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${isSearch == 'no'}&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">class</span><span class="s3">=&quot;avatar-staff-table&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;img </span><span class="s2">th:src</span><span class="s3">=&quot;${'/img/' + nhanVien.getAnhDaiDien()}&quot; </span><span class="s2">alt</span><span class="s3">=&quot;Ảnh đại diện&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getHoTen()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getEmail()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getSDT()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;phongBan : ${phongBanList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${phongBan.getMaPB() == nhanVien.getMaPB()}&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{phongBan.getTenPB()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/div&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getNgaySinh()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getQueQuan()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getGioiTinh()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getDanToc()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/staffInfo?MSNV=' + nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-user-edit&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/loginInfo?MSNV=' + nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;far fa-user&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/contractInfo?MSNV=' + nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-file-signature&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/officeDepartmentInfo?MSNV=' + nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-users&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/salaryInfo?MSNV=' + nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-money-check-alt&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/home?action=deleteStaff&amp;MSNVDelete=' + nhanVien.getMSNV()}&quot; </span><span class="s2">class</span><span class="s3">=&quot;delete-staff-link&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-trash-alt delete-confirmation&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                <span class="s0">&lt;/tr&gt;</span>
+                <span class="s0">&lt;tr </span><span class="s2">th:each</span><span class="s3">=&quot;nhanVien : ${nhanVienListSearch}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${isSearch == 'yes'}&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">class</span><span class="s3">=&quot;avatar-staff-table&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;img </span><span class="s2">th:src</span><span class="s3">=&quot;${'/img/' + nhanVien.getAnhDaiDien()}&quot; </span><span class="s2">alt</span><span class="s3">=&quot;Ảnh đại diện&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getHoTen()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getEmail()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getSDT()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;phongBan : ${phongBanList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${phongBan.getMaPB() == nhanVien.getMaPB()}&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{phongBan.getTenPB()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/div&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getNgaySinh()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getQueQuan()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getGioiTinh()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;*{nhanVien.getDanToc()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/staffInfo?MSNV=' + nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-user-edit&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/loginInfo?MSNV=' + nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;far fa-user&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/contractInfo?MSNV=' + nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-file-signature&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/officeDepartmentInfo?MSNV=' + nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-users&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/salaryInfo?MSNV=' + nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-money-check-alt&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">th:href</span><span class="s3">=&quot;${'/home?action=deleteStaff&amp;MSNVDelete=' + nhanVien.getMSNV()}&quot; </span><span class="s2">class</span><span class="s3">=&quot;delete-staff-link&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-trash-alt delete-confirmation&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                <span class="s0">&lt;/tr&gt;</span>
+            <span class="s0">&lt;/table&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;office-manager&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${pageView == '2'}&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;div&gt;</span><span class="s4">QUẢN LÝ CHỨC VỤ</span><span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;br&gt;</span>
+            <span class="s0">&lt;div&gt;</span>
+                <span class="s0">&lt;div&gt;</span><span class="s4">Thêm chức vụ mới</span><span class="s0">&lt;/div&gt;</span>
+                <span class="s0">&lt;div&gt;</span>
+                    <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/home}&quot; </span><span class="s2">th:object</span><span class="s3">=&quot;${chucVuNew}&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;table&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Mã chức vụ</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">id</span><span class="s3">=&quot;maCv&quot; </span><span class="s2">name</span><span class="s3">=&quot;maCV&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Mã chức vụ&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Tên chức vụ</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">id</span><span class="s3">=&quot;tenCV&quot; </span><span class="s2">name</span><span class="s3">=&quot;tenCV&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Tên chức vụ&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span>
+                                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Thêm chức vụ&quot;</span><span class="s0">&gt;</span>
+                                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;pageView&quot; </span><span class="s2">value</span><span class="s3">=&quot;2&quot;</span><span class="s0">&gt;</span>
+                                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;addNewOfficeConfirm&quot; </span><span class="s2">value</span><span class="s3">=&quot;yes&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                        <span class="s0">&lt;/table&gt;</span>
+                    <span class="s0">&lt;/form&gt;</span>
+                <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;div&gt;</span>
+                <span class="s0">&lt;div&gt;</span><span class="s4">Danh sách các chức vụ đã có</span><span class="s0">&lt;/div&gt;</span>
+                <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;chucVu : ${chucVuList}&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/home}&quot; </span><span class="s2">th:object</span><span class="s3">=&quot;${chucVuEdit}&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;table&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Mã chức vụ</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${chucVu.getMaCV()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;maCV&quot; </span><span class="s2">name</span><span class="s3">=&quot;maCV&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Tên chức vụ</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${chucVu.getTenChucVu()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;tenCV&quot; </span><span class="s2">name</span><span class="s3">=&quot;tenCV&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span>
+                                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Lưu thông tin&quot;</span><span class="s0">&gt;</span>
+                                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;pageView&quot; </span><span class="s2">value</span><span class="s3">=&quot;2&quot;</span><span class="s0">&gt;</span>
+                                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;changeInfoOfficeConfirm&quot; </span><span class="s2">value</span><span class="s3">=&quot;yes&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;#&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-trash-alt&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                        <span class="s0">&lt;/table&gt;</span>
+                    <span class="s0">&lt;/form&gt;</span>
+                <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;department-manager-container&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${pageView == '3'}&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;div&gt;</span><span class="s4">QUẢN LÝ PHÒNG BAN</span><span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;br&gt;</span>
+            <span class="s0">&lt;div&gt;</span>
+                <span class="s0">&lt;div&gt;</span><span class="s4">Thêm phòng ban mới</span><span class="s0">&lt;/div&gt;</span>
+                <span class="s0">&lt;div&gt;</span>
+                    <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/home}&quot; </span><span class="s2">th:object</span><span class="s3">=&quot;${chucVuNew}&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;table&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Mã phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">id</span><span class="s3">=&quot;maPB&quot; </span><span class="s2">name</span><span class="s3">=&quot;maPB&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Mã phòng ban&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Tên phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">id</span><span class="s3">=&quot;tenPB&quot; </span><span class="s2">name</span><span class="s3">=&quot;tenPB&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Tên phòng ban&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Số điện thoại phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">id</span><span class="s3">=&quot;SDTPB&quot; </span><span class="s2">name</span><span class="s3">=&quot;SDTPB&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Số điện thoại phòng ban&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Email phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">id</span><span class="s3">=&quot;emailPB&quot; </span><span class="s2">name</span><span class="s3">=&quot;emailPB&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Email phòng ban&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Địa chỉ phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">id</span><span class="s3">=&quot;diaChiPB&quot; </span><span class="s2">name</span><span class="s3">=&quot;diaChiPB&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Địa chỉ phòng ban&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span>
+                                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Thêm phòng ban&quot;</span><span class="s0">&gt;</span>
+                                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;addDepartmentConfirm&quot; </span><span class="s2">value</span><span class="s3">=&quot;yes&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                        <span class="s0">&lt;/table&gt;</span>
+                    <span class="s0">&lt;/form&gt;</span>
+                <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;div&gt;</span>
+                <span class="s0">&lt;div&gt;</span><span class="s4">Danh sách các phòng ban đã có</span><span class="s0">&lt;/div&gt;</span>
+                <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;phongBan : ${phongBanList}&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/home}&quot; </span><span class="s2">th:object</span><span class="s3">=&quot;${phongBanEdit}&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;table&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Mã phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${phongBan.getMaPB()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;maPB&quot; </span><span class="s2">name</span><span class="s3">=&quot;maPB&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Tên phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${phongBan.getTenPB()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;tenPB&quot; </span><span class="s2">name</span><span class="s3">=&quot;tenPB&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Số điện thoại phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${phongBan.getSDTPB()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;SDTPB&quot; </span><span class="s2">name</span><span class="s3">=&quot;SDTPB&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Email phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${phongBan.getEmailPB()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;emailPB&quot; </span><span class="s2">name</span><span class="s3">=&quot;emailPB&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span><span class="s4">Địa chỉ phòng ban</span><span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${phongBan.getDiaChiPB()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;diaChiPB&quot; </span><span class="s2">name</span><span class="s3">=&quot;diaChiPB&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                            <span class="s0">&lt;tr&gt;</span>
+                                <span class="s0">&lt;td&gt;</span>
+                                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Lưu thông tin&quot;</span><span class="s0">&gt;</span>
+                                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;pageView&quot; </span><span class="s2">value</span><span class="s3">=&quot;2&quot;</span><span class="s0">&gt;</span>
+                                    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;changeInfoDepartmentConfirm&quot; </span><span class="s2">value</span><span class="s3">=&quot;yes&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;/td&gt;</span>
+                                <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;#&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-trash-alt&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                            <span class="s0">&lt;/tr&gt;</span>
+                        <span class="s0">&lt;/table&gt;</span>
+                    <span class="s0">&lt;/form&gt;</span>
+                <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;br&gt;</span>
+            <span class="s0">&lt;div&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;/home&quot;</span><span class="s0">&gt;</span><span class="s4">Về trang chủ</span><span class="s0">&lt;/a&gt;&lt;/div&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">id</span><span class="s3">=&quot;modal&quot; </span><span class="s2">class</span><span class="s3">=&quot;modal&quot;</span><span class="s0">&gt;</span>
+        <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;modal-container&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;h1&gt;</span><span class="s4">Xoá nhân viên!</span><span class="s0">&lt;/h1&gt;</span>
+            <span class="s0">&lt;p&gt;</span><span class="s4">Bạn muốn xoá nhân viên này?</span><span class="s0">&lt;/p&gt;</span>
+            <span class="s0">&lt;p&gt;</span><span class="s4">Việc này sẽ xoá toàn bộ thông tin liên quan tới hợp đồng, lương, chức vụ và phòng ban nhân viên !</span><span class="s0">&lt;/p&gt;</span>
+            <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;clearfix&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;button </span><span class="s2">type</span><span class="s3">=&quot;button&quot; </span><span class="s2">class</span><span class="s3">=&quot;modal-cancel-button&quot;</span><span class="s0">&gt;</span><span class="s4">Cancel</span><span class="s0">&lt;/button&gt;</span>
+                <span class="s0">&lt;button </span><span class="s2">type</span><span class="s3">=&quot;button&quot; </span><span class="s2">class</span><span class="s3">=&quot;modal-delete-button&quot;</span><span class="s0">&gt;</span><span class="s4">Delete</span><span class="s0">&lt;/button&gt;</span>
+            <span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">id</span><span class="s3">=&quot;delete-labor-contract-modal&quot; </span><span class="s2">class</span><span class="s3">=&quot;delete-labor-contract-modal&quot;</span><span class="s0">&gt;</span>
+        <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;delete-labor-contract-modal-container&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;h1&gt;</span><span class="s4">Xoá hợp đồng!</span><span class="s0">&lt;/h1&gt;</span>
+            <span class="s0">&lt;p&gt;</span><span class="s4">Bạn muốn xoá hợp đồng này?</span><span class="s0">&lt;/p&gt;</span>
+            <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;clearfix&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;button </span><span class="s2">type</span><span class="s3">=&quot;button&quot; </span><span class="s2">class</span><span class="s3">=&quot;modal-cancel-labor-contract-button&quot;</span><span class="s0">&gt;</span><span class="s4">Cancel</span><span class="s0">&lt;/button&gt;</span>
+                <span class="s0">&lt;button </span><span class="s2">type</span><span class="s3">=&quot;button&quot; </span><span class="s2">class</span><span class="s3">=&quot;modal-delete-labor-contract-button&quot;</span><span class="s0">&gt;</span><span class="s4">Delete</span><span class="s0">&lt;/button&gt;</span>
+            <span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">id</span><span class="s3">=&quot;delete-info-login-modal&quot; </span><span class="s2">class</span><span class="s3">=&quot;delete-info-login-modal&quot;</span><span class="s0">&gt;</span>
+        <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;delete-info-login-modal-container&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;h1&gt;</span><span class="s4">Xoá thông tin đăng nhập</span><span class="s0">&lt;/h1&gt;</span>
+            <span class="s0">&lt;p&gt;</span><span class="s4">Bạn chắc muốn xoá thông tin đăng nhập này?</span><span class="s0">&lt;/p&gt;</span>
+            <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;clearfix&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;button </span><span class="s2">type</span><span class="s3">=&quot;button&quot; </span><span class="s2">class</span><span class="s3">=&quot;modal-cancel-info-login-button&quot;</span><span class="s0">&gt;</span><span class="s4">Cancel</span><span class="s0">&lt;/button&gt;</span>
+                <span class="s0">&lt;button </span><span class="s2">type</span><span class="s3">=&quot;button&quot; </span><span class="s2">class</span><span class="s3">=&quot;modal-delete-info-login-button&quot;</span><span class="s0">&gt;</span><span class="s4">Delete</span><span class="s0">&lt;/button&gt;</span>
+            <span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;br&gt;</span>
+    <span class="s0">&lt;div&gt;</span>
+        <span class="s0">&lt;strong&gt;</span>
+            <span class="s0">&lt;i </span><span class="s2">style</span><span class="s3">=&quot;</span><span class="s2">color</span><span class="s4">: </span><span class="s5">#ff0000</span><span class="s3">&quot; </span><span class="s2">th:text</span><span class="s3">=&quot;${'Thông báo : ' + errorMessage}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${errorMessage != ''}&quot;</span><span class="s0">&gt;&lt;/i&gt;</span>
+        <span class="s0">&lt;/strong&gt;</span>
+        <span class="s0">&lt;strong&gt;</span>
+            <span class="s0">&lt;i </span><span class="s2">style</span><span class="s3">=&quot;</span><span class="s2">color</span><span class="s4">: </span><span class="s5">#ff0000</span><span class="s3">&quot; </span><span class="s2">th:text</span><span class="s3">=&quot;${'Thông báo : ' + message}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${message != ''}&quot;</span><span class="s0">&gt;&lt;/i&gt;</span>
+        <span class="s0">&lt;/strong&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+<span class="s0">&lt;/body&gt;</span>
+<span class="s0">&lt;script&gt;</span>
+    <span class="s1">$(document).ready(</span><span class="s6">function</span><span class="s4">(){</span>
+        <span class="s6">var </span><span class="s1">deleteInfoLoginButtonCurrent</span><span class="s6">;</span>
+        <span class="s6">var </span><span class="s1">deleteStaffButtonCurrent</span><span class="s6">;</span>
+        <span class="s6">var </span><span class="s1">deleteLaborContractCurrent</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.salary-manager-row&quot;</span><span class="s4">).each(</span><span class="s6">function </span><span class="s4">(index</span><span class="s6">, </span><span class="s1">element){</span>
+            <span class="s6">var </span><span class="s1">numberWorkVal = $(element).find(</span><span class="s7">&quot;.number-work-value&quot;</span><span class="s4">).html()</span><span class="s6">;</span>
+            <span class="s1">numberWorkVal = Number(numberWorkVal)</span><span class="s6">;</span>
+            <span class="s1">$(element).find(</span><span class="s7">&quot;.number-work-input&quot;</span><span class="s4">).val(numberWorkVal)</span><span class="s6">;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.add-1-day&quot;</span><span class="s4">).click( </span><span class="s6">function </span><span class="s4">(){</span>
+            <span class="s6">var </span><span class="s1">numberWork = $(</span><span class="s6">this</span><span class="s4">).parent().find(</span><span class="s7">&quot;.number-work-input&quot;</span><span class="s4">).val()</span><span class="s6">;</span>
+            <span class="s6">var </span><span class="s1">MSNV = $(</span><span class="s6">this</span><span class="s4">).parent().children(</span><span class="s7">&quot;.MSNV&quot;</span><span class="s4">).html()</span><span class="s6">;</span>
+            <span class="s1">numberWork = Number(numberWork) + </span><span class="s5">1</span><span class="s6">;</span>
+            <span class="s1">$(</span><span class="s6">this</span><span class="s4">).parent().find(</span><span class="s7">&quot;.number-work-input&quot;</span><span class="s4">).val(numberWork)</span><span class="s6">;</span>
+            <span class="s1">$(</span><span class="s6">this</span><span class="s4">).parent().find(</span><span class="s7">&quot;.link-save&quot;</span><span class="s4">).attr(</span><span class="s7">&quot;href&quot;</span><span class="s6">, </span><span class="s7">&quot;/home?pageView=2&amp;numberWork=&quot; </span><span class="s4">+ numberWork + </span><span class="s7">&quot;&amp;MSNV=&quot; </span><span class="s4">+ MSNV)</span><span class="s6">;</span>
+       <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.delete-1-day&quot;</span><span class="s4">).click( </span><span class="s6">function </span><span class="s4">(){</span>
+            <span class="s6">var </span><span class="s1">numberWork = $(</span><span class="s6">this</span><span class="s4">).parent().find(</span><span class="s7">&quot;.number-work-input&quot;</span><span class="s4">).val()</span><span class="s6">;</span>
+            <span class="s6">var </span><span class="s1">MSNV = $(</span><span class="s6">this</span><span class="s4">).parent().children(</span><span class="s7">&quot;.MSNV&quot;</span><span class="s4">).html()</span><span class="s6">;</span>
+            <span class="s1">numberWork = Number(numberWork)</span><span class="s6">;</span>
+            <span class="s6">if </span><span class="s4">(numberWork &gt; </span><span class="s5">0</span><span class="s4">)</span>
+            <span class="s4">{</span>
+                <span class="s1">numberWork -= </span><span class="s5">1</span><span class="s6">;</span>
+            <span class="s4">}</span>
+            <span class="s1">$(</span><span class="s6">this</span><span class="s4">).parent().find(</span><span class="s7">&quot;.number-work-input&quot;</span><span class="s4">).val(numberWork)</span><span class="s6">;</span>
+            <span class="s1">$(</span><span class="s6">this</span><span class="s4">).parent().find(</span><span class="s7">&quot;.link-save&quot;</span><span class="s4">).attr(</span><span class="s7">&quot;href&quot;</span><span class="s6">, </span><span class="s7">&quot;/home?pageView=2&amp;numberWork=&quot; </span><span class="s4">+ numberWork + </span><span class="s7">&quot;&amp;MSNV=&quot; </span><span class="s4">+ MSNV)</span><span class="s6">;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.delete-confirmation&quot;</span><span class="s4">).click( </span><span class="s6">function </span><span class="s4">(e){</span>
+           <span class="s1">e.preventDefault()</span><span class="s6">;</span>
+           <span class="s1">$(</span><span class="s7">&quot;.modal&quot;</span><span class="s4">).show()</span><span class="s6">;</span>
+           <span class="s1">deleteStaffButtonCurrent = </span><span class="s6">this;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.modal-cancel-button&quot;</span><span class="s4">).click( </span><span class="s6">function </span><span class="s4">(){</span>
+            <span class="s1">$(</span><span class="s7">&quot;.modal&quot;</span><span class="s4">).hide()</span><span class="s6">;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.modal-delete-button&quot;</span><span class="s4">).click( </span><span class="s6">function </span><span class="s4">(e){</span>
+            <span class="s1">$(</span><span class="s7">&quot;.modal&quot;</span><span class="s4">).hide()</span><span class="s6">;</span>
+            <span class="s1">window.location.href = $(deleteStaffButtonCurrent).parent().attr(</span><span class="s7">&quot;href&quot;</span><span class="s4">)</span><span class="s6">;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.delete-labor-contract-confirmation&quot;</span><span class="s4">).click( </span><span class="s6">function </span><span class="s4">(e){</span>
+            <span class="s1">e.preventDefault()</span><span class="s6">;</span>
+            <span class="s1">$(</span><span class="s7">&quot;.delete-labor-contract-modal&quot;</span><span class="s4">).show()</span><span class="s6">;</span>
+            <span class="s1">deleteLaborContractCurrent = </span><span class="s6">this;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.modal-cancel-labor-contract-button&quot;</span><span class="s4">).click( </span><span class="s6">function </span><span class="s4">(){</span>
+            <span class="s1">$(</span><span class="s7">&quot;.delete-labor-contract-modal&quot;</span><span class="s4">).hide()</span><span class="s6">;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.modal-delete-labor-contract-button&quot;</span><span class="s4">).click( </span><span class="s6">function </span><span class="s4">(e){</span>
+            <span class="s1">$(</span><span class="s7">&quot;.delete-labor-contract-modal&quot;</span><span class="s4">).hide()</span><span class="s6">;</span>
+            <span class="s1">window.location.href = $(deleteLaborContractCurrent).parent().attr(</span><span class="s7">&quot;href&quot;</span><span class="s4">)</span><span class="s6">;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.delete-info-login-confirmation&quot;</span><span class="s4">).click( </span><span class="s6">function </span><span class="s4">(e){</span>
+            <span class="s1">e.preventDefault()</span><span class="s6">;</span>
+            <span class="s1">$(</span><span class="s7">&quot;.delete-info-login-modal&quot;</span><span class="s4">).show()</span><span class="s6">;</span>
+            <span class="s1">deleteInfoLoginButtonCurrent = </span><span class="s6">this;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.modal-cancel-info-login-button&quot;</span><span class="s4">).click( </span><span class="s6">function </span><span class="s4">(){</span>
+            <span class="s1">$(</span><span class="s7">&quot;.delete-info-login-modal&quot;</span><span class="s4">).hide()</span><span class="s6">;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.modal-delete-info-login-button&quot;</span><span class="s4">).click( </span><span class="s6">function </span><span class="s4">(e){</span>
+            <span class="s1">$(</span><span class="s7">&quot;.delete-info-login-modal&quot;</span><span class="s4">).hide()</span><span class="s6">;</span>
+            <span class="s1">window.location.href = $(deleteInfoLoginButtonCurrent).parent().attr(</span><span class="s7">&quot;href&quot;</span><span class="s4">)</span><span class="s6">;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+        <span class="s1">$(</span><span class="s7">&quot;.logoutLink&quot;</span><span class="s4">).on(</span><span class="s7">&quot;click&quot;</span><span class="s6">, function</span><span class="s4">(e) {</span>
+            <span class="s1">e.preventDefault()</span><span class="s6">;</span>
+            <span class="s1">document.logoutForm.submit()</span><span class="s6">;</span>
+        <span class="s4">})</span><span class="s6">;</span>
+    <span class="s4">})</span><span class="s6">;</span>
+<span class="s0">&lt;/script&gt;</span>
+<span class="s0">&lt;/html&gt;</span>
+
+</pre>
+</body>
+</html>

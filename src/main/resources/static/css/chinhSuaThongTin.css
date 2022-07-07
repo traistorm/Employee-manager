@@ -1,0 +1,51 @@
+html{
+    font-size: 15px;
+    font-family: sans-serif;
+    background-image: url(../img/pexels-anete-lusina-4792285.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;
+}
+
+/* __________________Userable_______________________ */
+
+h1{
+    text-align: center;
+}
+
+h1 i{
+    margin-right: 10px;
+}
+
+h2{
+    text-align: center;
+}
+
+h2 i{
+    margin-right: 10px;
+}
+
+/* _________________________________________________ */
+
+/* ___________________Content_______________________ */
+
+.content{
+    background-color: white;
+    border-radius: 10px;
+    width: 900px;
+    margin: 140px auto;
+    padding: 20px;
+    font-size: 110%;
+}
+
+.button{
+    margin-top: 20px;
+    margin-left: 400px;
+}
+.avatar-container img
+{
+    width: 200px;
+    height: 200px;
+}
+/* _________________________________________________ */

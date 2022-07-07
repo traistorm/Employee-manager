@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{css/loginInfo.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="content">
+        <h1>THÔNG TIN ĐĂNG NHẬP</h1>
+        <br>
+        <div th:text="'Nhân viên ' + ${nhanVien.getHoTen()}"></div>
+        <div th:text="'Mã số nhân viên ' + ${nhanVien.getMSNV()}"></div>
+        <br>
+        <div>
+            <form th:action="@{/home}" method="post">
+                <table>
+                    <tr>
+                        <td>Tên đăng nhập mới</td>
+                        <td><input th:value="${nhanVien.getTenDangNhap()}" name="usernameNew" required></td>
+                    </tr>
+                    <tr>
+                        <td>Mật khẩu mới</td>
+                        <td><input name="passwordNew" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Xác nhận"></td>
+                        <td><a href="/home">Về trang chủ</a></td>
+                    </tr>
+                </table>
+                <input type="hidden" name="changeInfoLoginStaffConfirm" value="yes">
+                <input type="hidden" name="MSNV" th:value="${nhanVien.getMSNV()}">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{editStaff.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div>Chỉnh sửa thông tin nhân viên</div>
+    <div>
+        <form th:action="@{/home}" th:object="${nhanVienEdit}" method="post" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td>Mã số nhân viên</td>
+                    <td><input th:type="Integer" th:value="${nhanVien.getMSNV()}" id="MSNV" name="MSNV" required></td>
+                </tr>
+                <tr>
+                    <td>Tên nhân viên</td>
+                    <td><input th:type="String" th:value="${nhanVien.getHoTen()}" id="hoTen" name="hoTen" required></td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại</td>
+                    <td><input th:type="String" th:value="${nhanVien.getSDT()}" id="SDT" name="SDT" required></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input th:type="String" th:value="${nhanVien.getEmail()}" id="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ hiện tại</td>
+                    <td><input th:type="String" th:value="${nhanVien.getDiaChiHienTai()}" id="diaChiHienTai" name="diaChiHienTai" required></td>
+                </tr>
+                <tr>
+                    <td>Quê quán</td>
+                    <td><input th:type="String" th:value="${nhanVien.getQueQuan()}" id="queQuan" name="queQuan" required></td>
+                </tr>
+                <tr>
+                    <td>Ngày sinh</td>
+                    <td><input th:type="date" th:value="${nhanVien.getNgaySinh()}" id="ngaySinh" name="ngaySinh" required></td>
+                </tr>
+                <tr>
+                    <td>Giới tính</td>
+                    <td><input th:type="text" th:value="${nhanVien.getGioiTinh()}" id="gioiTinh" name="gioiTinh" required></td>
+                </tr>
+                <tr>
+                    <td>Dân tộc</td>
+                    <td><input th:type="text" th:value="${nhanVien.getDanToc()}" id="danToc" name="danToc" required></td>
+                </tr>
+                <tr>
+                    <td>Sở thích</td>
+                    <td><input th:type="text" th:value="${nhanVien.getSoThich()}" id="soThich" name="soThich" required></td>
+                </tr>
+                <tr>
+                    <td>Công việc hiện tại</td>
+                    <td><input th:type="text" th:value="${nhanVien.getCongViecHienTai()}" id="congViecHienTai" name="congViecHienTai" required></td>
+                </tr>
+                <tr>
+                    <td>Chức vụ hiện tại</td>
+                    <td>
+                        <select id="maCV" name="maCV">
+                            <div th:each="chucVu : ${chucVuList}">
+                                <option th:if="${chucVu.getMaCV() == chucVuNhanVien.getMaCV()}" selected th:value="${chucVu.getMaCV()}" th:text="${chucVu.getTenChucVu()}"></option>
+                                <option th:if="${chucVu.getMaCV() != chucVuNhanVien.getMaCV()}" th:value="${chucVu.getMaCV()}" th:text="${chucVu.getTenChucVu()}"></option>
+                            </div>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phòng ban làm việc</td>
+                    <td>
+                        <select id="maPB" name="maPB">
+                            <div th:each="phongBan : ${phongBanList}">
+                                <option th:if="${phongBan.getMaPB() == nhanVien.getMaPB()}" th:value="${phongBan.getMaPB()}" th:text="${phongBan.getTenPB()}" selected></option>
+                                <option th:if="${phongBan.getMaPB() != nhanVien.getMaPB()}" th:value="${phongBan.getMaPB()}" th:text="${phongBan.getTenPB()}"></option>
+                            </div>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ảnh đại diện</td>
+                    <td><input type="file" name="avatarEdit" class="form-control-file"></td>
+                </tr>
+            </table>
+            <input type="hidden" th:value="${nhanVien.getVaiTroTaiKhoan()}" id="vaiTroTaiKhoan" name="vaiTroTaiKhoan">
+            <input type="hidden" th:value="${nhanVien.getLuongCoBan()}" id="luongCoBan" name="luongCoBan">
+            <input type="hidden" th:value="${nhanVien.getHeSoLuong()}" id="heSoLuong" name="heSoLuong">
+            <input type="hidden" th:value="${nhanVien.getHeSoPhuCap()}" id="heSoPhuCap" name="heSoPhuCap">
+            <input type="hidden" name="editEmployeeConfirm" value="yes">
+            <input type="submit" value="Xác nhận">
+        </form>
+    </div>
+</body>
+</html>

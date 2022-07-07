@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{main.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        <div>Thêm hợp đồng lao động</div>
+        <div>
+            <form th:action="@{/home}" th:object="${hopDongNew}" method="post">
+                <div>Mã số nhân viên</div>
+                <input type="text" th:field="*{MSNV}" required>
+                <div>Mã số hợp đồng</div>
+                <input type="text" th:field="*{maHD}" required>
+                <div>Tên hợp đồng</div>
+                <input type="text" th:field="*{tenHopDong}" required>
+                <div>Thời gian bắt đầu hợp đồng</div>
+                <input type="date" th:field="*{ngayBatDauHD}" required>
+                <div>Thời gian kết thúc hợp đồng</div>
+                <input type="date" th:field="*{ngayKetThucHD}" required>
+                <div>Mức lương/tháng</div>
+                <input type="text" th:field="*{luongThang}" required>
+                <input type="hidden" name="action" value="addLaborContract">
+                <input type="hidden" name="pageView" value="3">
+                <br>
+                <br>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

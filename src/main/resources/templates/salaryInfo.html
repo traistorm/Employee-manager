@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{css/luong.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="content">
+        <h1><i class="fas fa-search-dollar"></i> Thông tin lương nhân viên</h1>
+        <br>
+        <div th:text="'Nhân viên ' + ${nhanVien.getHoTen()}"></div>
+        <div th:text="'Mã số nhân viên ' + ${nhanVien.getMSNV()}"></div>
+        <br>
+        <div>
+            <h2><i class="fas fa-money-check-alt"></i> Mức lương hiện tại</h2>
+            <div>
+                <form th:action="@{/home}" method="post">
+                    <table>
+                        <tr>
+                            <td>Lương cơ bản</td>
+                            <td>
+                                <input th:value="${nhanVien.getLuongCoBan()}" name="luongCoBan">
+                                <input type="hidden" name="changeInfoSalaryConfirm" value="yes">
+                                <input type="hidden" name="MSNV" th:value="${nhanVien.getMSNV()}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Hệ số lương</td>
+                            <td><input th:value="${nhanVien.getHeSoLuong()}" name="heSoLuong"></td>
+                        </tr>
+                        <tr>
+                            <td>Hệ số phụ cấp</td>
+                            <td><input th:value="${nhanVien.getHeSoPhuCap()}" name="heSoPhuCap"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="Lưu thông tin"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div>
+            <h2>Thêm thông tin thanh toán lương</h2>
+            <div>
+                <form th:action="@{/home}" th:object="${luongNew}" method="post">
+                    <table>
+                        <tr>
+                            <td>Mã lương</td>
+                            <td>
+                                <input id="maLuong" name="maLuong" placeholder="Mã lương">
+                                <input id="MSNV" name="MSNV" type="hidden" th:value="${nhanVien.getMSNV()}">
+                                <input id="luongCoBan" name="luongCoBan" type="hidden" th:value="${nhanVien.getLuongCoBan()}">
+                                <input id="heSoLuong" name="heSoLuong" type="hidden" th:value="${nhanVien.getHeSoLuong()}">
+                                <input id="heSoPhuCap" name="heSoPhuCap" type="hidden" th:value="${nhanVien.getHeSoPhuCap()}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Thêm">
+                                <input type="hidden" name="addSalaryConfirm" value="yes">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div>
+            <h2>Thông tin lương đã thanh toán</h2>
+            <div th:each="luong : ${luongNhanVienList}">
+                <form th:action="@{/home}" th:object="${luongEdit}" method="post">
+                    <table>
+                        <tr>
+                            <td>Mã lương</td>
+                            <td>
+                                <input th:value="${luong.getMaLuong()}" id="maLuong" name="maLuong">
+                                <input type="hidden" th:value="${luong.getMSNV()}" id="MSNV" name="MSNV">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Lương cơ bản</td>
+                            <td><input th:value="${luong.getLuongCoBan()}" id="luongCoBan" name="luongCoBan"></td>
+                        </tr>
+                        <tr>
+                            <td>Hệ số lương</td>
+                            <td><input th:value="${luong.getHeSoLuong()}" id="heSoLuong" name="heSoLuong"></td>
+                        </tr>
+                        <tr>
+                            <td>Hệ số phụ cấp</td>
+                            <td><input th:value="${luong.getHeSoPhuCap()}" id="heSoPhuCap" name="heSoPhuCap"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày thanh toán</td>
+                            <td><input type="Date" th:value="${luong.getNgayThanhToan()}" id="ngayThanhToan" name="ngayThanhToan"></td>
+                        </tr>
+                        <tr>
+                            <td>Tổng lương đã lĩnh</td>
+                            <td th:with="tongLuong = ${luong.getLuongCoBan() * luong.getHeSoLuong() + luong.getLuongCoBan() * luong.getHeSoPhuCap()}">
+                                <div th:text="${#numbers.formatDecimal(tongLuong, 0, 'COMMA', 0, 'POINT')}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Lưu thông tin">
+                                <input type="hidden" name="editSalaryConfirm" value="yes">
+                            </td>
+                            <td><a th:href="'/home?deleteSalaryDetailConfirm=yes&MSNV=' + ${luong.getMSNV()} + '&maLuong=' + ${luong.getMaLuong()}"><i class="fas fa-trash-alt"></i></a></td>
+                        </tr>
+                    </table>
+                    <input type="hidden" th:value="${luong.getMSNV()}">
+                </form>
+            </div>
+            <div th:if="${luongFound == 'no'}">
+                <div>Chưa có thông tin thanh toán lương nào</div>
+            </div>
+        </div>
+        <br>
+        <div><a href="/home">Về trang chủ</a></div>
+    </div>
+</body>
+</html>

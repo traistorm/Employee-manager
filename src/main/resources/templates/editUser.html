@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{editUser.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div th:if="${isAdmin == 'yes'}">
+        <div>Chỉnh sửa thông tin đăng nhập nhân viên</div>
+        <div>
+            <form th:action="@{/home}" th:object="${nhanVienEdit}" method="post">
+                <div>Mã số nhân viên</div>
+                <div th:text="${nhanVienEdit.getMSNV()}"></div>
+                <input type="hidden" name="MSNV" id="MSNV" th:value="${nhanVienEdit.getMSNV()}">
+                <div>Tên nhân viên</div>
+                <div th:text="${nhanVienEdit.getHoTen()}"></div>
+                <div>Tên đăng nhập</div>
+                <input th:value="${nhanVienEdit.getTenDangNhap()}" name="tenDangNhap" id="tenDangNhap" required>
+                <div>Mật khẩu</div>
+                <input type="text" name="matKhau" id="matKhau" required>
+                <input type="hidden" value="5" name="pageView">
+                <input type="hidden" name="action" value="editUserConfirm">
+                <br>
+                <br>
+                <input type="submit" value="Xác nhận">
+            </form>
+        </div>
+    </div>
+    <div th:if="${isAdmin == 'no'}">
+        <div>Chỉnh sửa thông tin nhân viên</div>
+        <div class="edit-info-container">
+            <form th:action="@{/home}" th:object="${nhanVienEdit}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="MSNV" id="MSNV" th:value="${nhanVienEdit.getMSNV()}">
+                <div>
+                    <div>Thông tin đăng nhập</div>
+                    <div class="login-info-container">
+                        <table>
+                            <tr>
+                                <td><span>Tên đăng nhập</span></td>
+                                <td><input th:value="${nhanVienEdit.getTenDangNhap()}" name="tenDangNhap" id="tenDangNhap" required></td>
+                            </tr>
+                            <tr>
+                                <td><div>Mật khẩu</div></td>
+                                <td><input type="text" name="matKhau" id="matKhau"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <div>Thông tin cá nhân</div>
+                    <div class="personal-info-container">
+                        <table>
+                            <tr>
+                                <td><span>Mã số nhân viên</span></td>
+                                <td><div th:text="${nhanVienEdit.getMSNV()}"></div></td>
+                            </tr>
+                            <tr>
+                                <td><span>Tên nhân viên</span></td>
+                                <td><div th:text="${nhanVienEdit.getHoTen()}"></div></td>
+                            </tr>
+                            <tr>
+                                <td><span>Số điện thoại</span></td>
+                                <td><input th:type="String" th:value="${nhanVienEdit.getSDT()}" id="SDT" name="SDT" required></td>
+                            </tr>
+                            <tr>
+                                <td><span>Email</span></td>
+                                <td><input th:type="String" th:value="${nhanVienEdit.getEmail()}" id="email" name="email" required></td>
+                            </tr>
+                            <tr>
+                                <td><span>Số chứng minh thư</span></td>
+                                <td><div th:text="${nhanVienEdit.getCMT()}"></div></td>
+                            </tr>
+                            <tr>
+                                <td><span>Địa chỉ hiện tại</span></td>
+                                <td><input th:type="String" th:value="${nhanVienEdit.getDiaChiHienTai()}" id="diaChiHienTai" name="diaChiHienTai" required></td>
+                            </tr>
+                            <tr>
+                                <td><span>Quê quán</span></td>
+                                <td><input th:type="String" th:value="${nhanVienEdit.getQueQuan()}" id="queQuan" name="queQuan" required></td>
+                            </tr>
+                            <tr>
+                                <td><span>Ngày sinh</span></td>
+                                <td><input th:type="date" th:value="${nhanVienEdit.getNgaySinh()}" id="ngaySinh" name="ngaySinh" required></td>
+                            </tr>
+                            <tr>
+                                <td><span>Giới tính</span></td>
+                                <td>
+                                    <select name="gioiTinh" id="gioiTinh">
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                        <option value="Không rõ">Không rõ</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span>Dân tộc</span></td>
+                                <td><input th:type="text" th:value="${nhanVienEdit.getDanToc()}" id="danToc" name="danToc" required></td>
+                            </tr>
+                            <tr>
+                                <td><span>Sở thích</span></td>
+                                <td><input th:type="text" th:value="${nhanVienEdit.getSoThich()}" id="soThich" name="soThich" required></td>
+                            </tr>
+                            <tr>
+                                <td><span>Ảnh đại diện</span></td>
+                                <td><input type="file" name="avatarEdit" class="form-control-file"></td>
+                            </tr>
+                        </table>
+                        <input type="hidden" name="action" value="editInfoUserConfirm">
+                        <input type="hidden" name="pageView" value="1">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <input type="submit" value="Xác nhận">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

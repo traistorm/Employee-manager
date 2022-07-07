@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>salaryInfo.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #e8bf6a;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bababa;}
+.s3 { color: #a5c261;}
+.s4 { color: #a9b7c6;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+salaryInfo.html</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;!DOCTYPE </span><span class="s2">html</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">xmlns</span><span class="s3">=&quot;http://www.w3.org/1999/xhtml&quot;</span>
+      <span class="s2">xmlns:th</span><span class="s3">=&quot;http://www.thymeleaf.org&quot;</span>
+      <span class="s2">xmlns:sec</span><span class="s3">=&quot;http://www.thymeleaf.org/extras/spring-security&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">lang</span><span class="s3">=&quot;en&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;head&gt;</span>
+    <span class="s0">&lt;meta </span><span class="s2">charset</span><span class="s3">=&quot;UTF-8&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;title&gt;</span><span class="s4">Title</span><span class="s0">&lt;/title&gt;</span>
+    <span class="s0">&lt;link </span><span class="s2">th:href</span><span class="s3">=&quot;@{staffDetail.css}&quot; </span><span class="s2">rel</span><span class="s3">=&quot;stylesheet&quot; </span><span class="s0">/&gt;</span>
+    <span class="s0">&lt;link </span><span class="s2">rel</span><span class="s3">=&quot;stylesheet&quot; </span><span class="s2">href</span><span class="s3">=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;script </span><span class="s2">src</span><span class="s3">=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js&quot;</span><span class="s0">&gt;&lt;/script&gt;</span>
+<span class="s0">&lt;/head&gt;</span>
+<span class="s0">&lt;body&gt;</span>
+    <span class="s0">&lt;div&gt;</span><span class="s4">THÔNG TIN LƯƠNG</span><span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;br&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;'Nhân viên ' + ${nhanVien.getHoTen()}&quot;</span><span class="s0">&gt;&lt;/div&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;'Mã số nhân viên ' + ${nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;/div&gt;</span>
+    <span class="s0">&lt;br&gt;</span>
+    <span class="s0">&lt;div&gt;</span>
+        <span class="s0">&lt;div&gt;</span><span class="s4">Mức lương hiện tại</span><span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;div&gt;</span>
+            <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/home}&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;table&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Lương cơ bản</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${nhanVien.getLuongCoBan()}&quot; </span><span class="s2">name</span><span class="s3">=&quot;luongCoBan&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">name</span><span class="s3">=&quot;changeInfoSalaryConfirm&quot; </span><span class="s2">value</span><span class="s3">=&quot;yes&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Hệ số lương</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${nhanVien.getHeSoLuong()}&quot; </span><span class="s2">name</span><span class="s3">=&quot;heSoLuong&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Hệ số phụ cấp</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${nhanVien.getHeSoPhuCap()}&quot; </span><span class="s2">name</span><span class="s3">=&quot;heSoPhuCap&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Lưu thông tin&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                <span class="s0">&lt;/table&gt;</span>
+            <span class="s0">&lt;/form&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;div&gt;</span>
+        <span class="s0">&lt;div&gt;</span><span class="s4">Thêm thông tin thanh toán lương</span><span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;div&gt;</span>
+            <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/home}&quot; </span><span class="s2">th:object</span><span class="s3">=&quot;${luongNew}&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;table&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Mã lương</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">id</span><span class="s3">=&quot;maLuong&quot; </span><span class="s2">name</span><span class="s3">=&quot;maLuong&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Mã lương&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">id</span><span class="s3">=&quot;MSNV&quot; </span><span class="s2">name</span><span class="s3">=&quot;MSNV&quot; </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">id</span><span class="s3">=&quot;luongCoBan&quot; </span><span class="s2">name</span><span class="s3">=&quot;luongCoBan&quot; </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${nhanVien.getLuongCoBan()}&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">id</span><span class="s3">=&quot;heSoLuong&quot; </span><span class="s2">name</span><span class="s3">=&quot;heSoLuong&quot; </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${nhanVien.getHeSoLuong()}&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">id</span><span class="s3">=&quot;heSoPhuCap&quot; </span><span class="s2">name</span><span class="s3">=&quot;heSoPhuCap&quot; </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${nhanVien.getHeSoPhuCap()}&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span>
+                            <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Thêm&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                <span class="s0">&lt;/table&gt;</span>
+            <span class="s0">&lt;/form&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;div&gt;</span>
+        <span class="s0">&lt;div&gt;</span><span class="s4">Thông tin lương đã thanh toán</span><span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;luong : ${luongNhanVienList}&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/home}&quot; </span><span class="s2">th:object</span><span class="s3">=&quot;${luongEdit}&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;table&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Mã lương</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${luong.getMaLuong()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Lương cơ bản</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${luong.getLuongCoBan()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;luongCoBan&quot; </span><span class="s2">name</span><span class="s3">=&quot;luongCoBan&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Hệ số lương</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${luong.getHeSoLuong()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;heSoLuong&quot; </span><span class="s2">name</span><span class="s3">=&quot;heSoLuong&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Hệ số phụ cấp</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${luong.getHeSoPhuCap()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;heSoPhuCap&quot; </span><span class="s2">name</span><span class="s3">=&quot;heSoPhuCap&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Ngày thanh toán</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">th:value</span><span class="s3">=&quot;${luong.getNgayThanhToan()}&quot; </span><span class="s2">id</span><span class="s3">=&quot;ngayThanhToan&quot; </span><span class="s2">name</span><span class="s3">=&quot;ngayThanhToan&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;</span><span class="s4">Tổng lương đã lĩnh</span><span class="s0">&lt;/td&gt;</span>
+                        <span class="s0">&lt;td </span><span class="s2">th:with</span><span class="s3">=&quot;tongLuong = ${luong.getLuongCoBan() * luong.getHeSoLuong() + luong.getLuongCoBan() * luong.getHeSoPhuCap()}&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${#numbers.formatDecimal(tongLuong, 0, 'COMMA', 0, 'POINT')}&quot;</span><span class="s0">&gt;&lt;/div&gt;</span>
+                        <span class="s0">&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                    <span class="s0">&lt;tr&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Lưu thông tin&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                        <span class="s0">&lt;td&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;&quot;</span><span class="s0">&gt;&lt;i </span><span class="s2">class</span><span class="s3">=&quot;fas fa-trash-alt&quot;</span><span class="s0">&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/tr&gt;</span>
+                <span class="s0">&lt;/table&gt;</span>
+                <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;hidden&quot; </span><span class="s2">th:value</span><span class="s3">=&quot;${luong.getMSNV()}&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;/form&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;div </span><span class="s2">th:if</span><span class="s3">=&quot;${luongFound == 'no'}&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;div&gt;</span><span class="s4">Chưa có thông tin thanh toán lương nào</span><span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;br&gt;</span>
+    <span class="s0">&lt;div&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;/home&quot;</span><span class="s0">&gt;</span><span class="s4">Về trang chủ</span><span class="s0">&lt;/a&gt;&lt;/div&gt;</span>
+<span class="s0">&lt;/body&gt;</span>
+<span class="s0">&lt;/html&gt;</span></pre>
+</body>
+</html>

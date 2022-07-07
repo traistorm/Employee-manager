@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>login.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #e8bf6a;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bababa;}
+.s3 { color: #a5c261;}
+.s4 { color: #a9b7c6;}
+.s5 { color: #6897bb;}
+.s6 { color: #cc7832;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+login.html</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;!DOCTYPE </span><span class="s2">html</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">xmlns</span><span class="s3">=&quot;http://www.w3.org/1999/xhtml&quot;</span>
+      <span class="s2">xmlns:th</span><span class="s3">=&quot;http://www.thymeleaf.org&quot;</span>
+      <span class="s2">xmlns:sec</span><span class="s3">=&quot;http://www.thymeleaf.org/extras/spring-security&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">lang</span><span class="s3">=&quot;en&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;head&gt;</span>
+    <span class="s0">&lt;meta </span><span class="s2">charset</span><span class="s3">=&quot;UTF-8&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;title&gt;</span><span class="s4">Title</span><span class="s0">&lt;/title&gt;</span>
+    <span class="s0">&lt;link </span><span class="s2">th:href</span><span class="s3">=&quot;@{main.css}&quot; </span><span class="s2">rel</span><span class="s3">=&quot;stylesheet&quot; </span><span class="s0">/&gt;</span>
+    <span class="s0">&lt;script </span><span class="s2">src</span><span class="s3">=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js&quot;</span><span class="s0">&gt;&lt;/script&gt;</span>
+<span class="s0">&lt;/head&gt;</span>
+<span class="s0">&lt;body&gt;</span>
+<span class="s0">&lt;div&gt;</span>
+    <span class="s0">&lt;div&gt;</span><span class="s4">WELCOME PAGE</span><span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;div&gt;</span>
+        <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{/login}&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot; </span><span class="s2">style</span><span class="s3">=&quot;</span><span class="s2">max-width</span><span class="s4">: </span><span class="s5">400</span><span class="s3">px</span><span class="s6">; </span><span class="s2">margin</span><span class="s4">: </span><span class="s5">0 </span><span class="s3">auto</span><span class="s6">;</span><span class="s3">&quot;</span><span class="s0">&gt;</span>
+            <span class="s4">E-mail: </span><span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;text&quot; </span><span class="s2">name</span><span class="s3">=&quot;username&quot; </span><span class="s0">/&gt;</span>
+            <span class="s4">Password: </span><span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;password&quot; </span><span class="s2">name</span><span class="s3">=&quot;password&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;submit&quot; </span><span class="s2">value</span><span class="s3">=&quot;Login&quot; </span><span class="s0">/&gt;</span>
+        <span class="s0">&lt;/form&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">th:if</span><span class="s3">=&quot;${loginError} != null&quot;</span><span class="s0">&gt;</span>
+        <span class="s0">&lt;div </span><span class="s2">th:text</span><span class="s3">=&quot;${'Thông báo : ' + loginError}&quot;</span><span class="s0">&gt;&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+<span class="s0">&lt;/div&gt;</span>
+<span class="s0">&lt;/body&gt;</span>
+<span class="s0">&lt;/html&gt;</span></pre>
+</body>
+</html>

@@ -1,0 +1,158 @@
+html{
+    font-size: 15px;
+    font-family: sans-serif;
+    background-image: url(../img/pexels-anete-lusina-4792285.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;
+}
+
+
+
+/* __________________Userable_______________________ */
+
+h1{
+    text-align: center;
+}
+
+h1 i{
+    margin-right: 10px;
+}
+
+h2{
+    text-align: center;
+}
+
+h2 i{
+    margin-right: 10px;
+}
+
+.clearfix::after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+/* _________________________________________________ */
+
+/* __________________Header_________________________ */
+
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 300%;
+    font-weight: 700;
+    color: white;
+    border: 5px;
+    width: 600px;
+    text-align: center;
+    position: relative;
+    top: 100px;
+    left: 370px;
+    line-height: 120%;
+}
+
+.header{
+    list-style: none;
+    background-color: #575fcf;
+    border-radius: 20px;
+    position: fixed;
+    top: 10px;
+    left: 540px;
+}
+
+.header li{
+    display: inline-block;
+    margin-right: 30px;
+
+}
+
+.header li a{
+    text-decoration: none;
+    color: white;
+    font-size: 150%;
+    font-weight: 500;
+    transition: all 0.5s;
+}
+
+.header li a:hover,
+.header li a:active{
+    border-bottom: 3px solid white;
+
+}
+/* _________________________________________________ */
+
+/* ___________________Content_______________________ */
+.content{
+    background-color: white;
+    border-radius: 10px;
+    width: 900px;
+    margin: 0px auto;
+    margin-top: 140px;
+    padding: 30px;
+    font-size: 120%;
+    overflow: hidden; /* Khắc phục lỗi 2 float không background đủ content */
+}
+
+.info{
+    float: left;
+}
+
+.avatar-container{
+    float: right;
+    padding-right: 70px;
+}
+
+.avatar-container img{
+    margin: 20px;
+    width: 200px;
+    height: 200px;
+}
+
+.avatar-container a{
+    text-decoration: none;
+    padding: 7px;
+    color: white;
+    border-radius: 5px;
+    background-color: #0fbcf9;
+}
+
+.avatar-container a:hover,
+.avatar-container a:active{
+    box-shadow: 3px 3px 7px 2px #485460;
+}
+.content-pageView-2{
+    background-color: white;
+    border-radius: 10px;
+    width: 900px;
+    margin: 0px auto;
+    margin-top: 140px;
+    padding: 30px;
+    font-size: 120%;
+}
+.content-pageView-3{
+    background-color: white;
+    border-radius: 10px;
+    width: 900px;
+    margin: 0px auto;
+    margin-top: 140px;
+    padding: 30px;
+    font-size: 110%;
+}
+.conten-pageView-4{
+    background-color: white;
+    border-radius: 10px;
+    width: 900px;
+    margin: 0px auto;
+    margin-top: 140px;
+    padding: 30px;
+    font-size: 110%;
+}
+h2{
+    text-align: center;
+}
+
+h2 i{
+    margin-right: 10px;
+}
+/* _________________________________________________ */

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/3e30fef577.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/login.css}"/>
+</head>
+<body th:style="'background-image: url(/static/img/bg.jpg) no-repeat center center fixed;'">
+<div>
+    <p>WELCOME PAGE</p>
+    <div>
+        <form th:action="@{/login}" method="post" style="max-width: 400px; margin: 0 auto;">
+            <input type="text" name="username" placeholder="Tên đăng nhập" />
+            <input type="password" name="password" placeholder="Mật khẩu" />
+            <input type="submit" value="Login" name = "login" />
+        </form>
+    </div>
+    <div th:if="${loginError} != null">
+        <div th:text="${'Thông báo : ' + loginError}"></div>
+    </div>
+</div>
+</body>
+</html>

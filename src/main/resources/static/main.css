@@ -1,0 +1,59 @@
+.employee-manager-table, .employee-manager-table th, .employee-manager-table td
+{
+    border: 1px solid black;
+    text-align: center;
+}
+th
+{
+    height: 40px;
+}
+ul, li
+{
+    display: inline;
+}
+.container-table
+{
+    display: flex;
+    justify-content: center;
+}
+.container-signature
+{
+    display: flex;
+    justify-content: space-around;
+}
+.modal, .delete-labor-contract-modal, .delete-info-login-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(107, 104, 104, 0.5);
+    padding-top: 50px;
+}
+.modal-container, .delete-labor-contract-modal-container, .delete-info-login-modal-container {
+    padding: 16px;
+    text-align: center;
+    background-color: #5d5b5b;
+    width: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.avatar-staff-table img
+{
+    width: 50px;
+    height: 50px;
+}
+html{
+    font-size: 15px;
+    font-family: sans-serif;
+    background-image: url('/img/pexels-anete-lusina-4792285.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;
+}
+

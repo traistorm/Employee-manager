@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BeansEndpointTabSettings">
+    <option name="diagramMode" value="true" />
+    <option name="showFiles" value="false" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="df5a3a76-c0f0-46f1-b0d0-2c7147c54194" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="printScope" value="4" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../Check" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1rE8Hz8sUfcLlEpcP0NSORgwmAg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Check" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\manage\src\main\resources\static" />
+      <recent name="D:\manage\src\main\resources\static\img\css" />
+      <recent name="D:\manage\src\main\resources\static\img" />
+      <recent name="D:\manage\src\main\resources\templates" />
+      <recent name="D:\manage\src\main\resources\upload" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.manage" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ManageApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="manage" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.manage.ManageApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="df5a3a76-c0f0-46f1-b0d0-2c7147c54194" name="Default Changelist" comment="" />
+      <created>1618529807511</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618529807511</updated>
+      <workItem from="1618529808643" duration="1287000" />
+      <workItem from="1618531162084" duration="32311000" />
+      <workItem from="1618590442033" duration="435000" />
+      <workItem from="1618591160362" duration="4522000" />
+      <workItem from="1618653580287" duration="8293000" />
+      <workItem from="1618681833156" duration="18000" />
+      <workItem from="1618682097149" duration="2000" />
+      <workItem from="1618918694032" duration="5000" />
+      <workItem from="1619085798977" duration="964000" />
+      <workItem from="1619489088950" duration="2041000" />
+      <workItem from="1619778892163" duration="7400000" />
+      <workItem from="1619835554025" duration="26160000" />
+      <workItem from="1619923839026" duration="23129000" />
+      <workItem from="1620003804637" duration="73254000" />
+      <workItem from="1620182691448" duration="10058000" />
+      <workItem from="1620323480522" duration="154000" />
+      <workItem from="1620324258701" duration="7467000" />
+      <workItem from="1620359705401" duration="5450000" />
+      <workItem from="1620384746005" duration="3888000" />
+      <workItem from="1620464159589" duration="17823000" />
+      <workItem from="1620559293652" duration="17683000" />
+      <workItem from="1620639955502" duration="7876000" />
+      <workItem from="1620658948436" duration="25784000" />
+      <workItem from="1620823006638" duration="10212000" />
+      <workItem from="1620919674467" duration="5623000" />
+      <workItem from="1620986602014" duration="5045000" />
+      <workItem from="1620994548277" duration="608000" />
+      <workItem from="1621080280683" duration="2234000" />
+      <workItem from="1621083726376" duration="29188000" />
+      <workItem from="1621171880409" duration="26760000" />
+      <workItem from="1621245112950" duration="11739000" />
+      <workItem from="1621324998701" duration="25314000" />
+      <workItem from="1621388249926" duration="8353000" />
+      <workItem from="1621414930550" duration="4145000" />
+      <workItem from="1621462168795" duration="1824000" />
+      <workItem from="1621651429221" duration="5576000" />
+      <workItem from="1621651104447" duration="140000" />
+      <workItem from="1622208955805" duration="818000" />
+      <workItem from="1622232815963" duration="4885000" />
+      <workItem from="1622241635249" duration="1371000" />
+      <workItem from="1622250624109" duration="9190000" />
+      <workItem from="1622277550238" duration="7206000" />
+      <workItem from="1622285975479" duration="21043000" />
+      <workItem from="1622338976071" duration="10430000" />
+      <workItem from="1622384568548" duration="652000" />
+      <workItem from="1622393438188" duration="5839000" />
+      <workItem from="1622405374220" duration="12320000" />
+      <workItem from="1622461072703" duration="25333000" />
+      <workItem from="1622505260328" duration="30056000" />
+      <workItem from="1622590281775" duration="45119000" />
+      <workItem from="1622681501370" duration="92000" />
+      <workItem from="1622681620467" duration="4880000" />
+      <workItem from="1623059601092" duration="2020000" />
+      <workItem from="1623145354669" duration="1072000" />
+      <workItem from="1623151955439" duration="5958000" />
+      <workItem from="1623163038837" duration="390000" />
+      <workItem from="1623163668560" duration="702000" />
+      <workItem from="1623164756240" duration="5817000" />
+      <workItem from="1623243543251" duration="11460000" />
+      <workItem from="1623314527052" duration="7288000" />
+      <workItem from="1623358722651" duration="8998000" />
+      <workItem from="1623370292814" duration="19683000" />
+      <workItem from="1623398090946" duration="23004000" />
+      <workItem from="1623468660888" duration="525000" />
+      <workItem from="1623471092360" duration="15828000" />
+      <workItem from="1623495432131" duration="3782000" />
+      <workItem from="1623572236187" duration="5768000" />
+      <workItem from="1623670787767" duration="1751000" />
+      <workItem from="1623689880461" duration="21213000" />
+      <workItem from="1623745827796" duration="11000" />
+      <workItem from="1623815596023" duration="1035000" />
+      <workItem from="1623817128043" duration="34345000" />
+      <workItem from="1623862224072" duration="195000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.springframework.expression.spel.SpelEvaluationException" package="org.springframework.expression.spel" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

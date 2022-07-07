@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>laborContractReport.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #e8bf6a;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bababa;}
+.s3 { color: #a5c261;}
+.s4 { color: #a9b7c6;}
+.s5 { color: #cc7832;}
+.s6 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+laborContractReport.html</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;!DOCTYPE </span><span class="s2">html</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">xmlns</span><span class="s3">=&quot;http://www.w3.org/1999/xhtml&quot;</span>
+      <span class="s2">xmlns:th</span><span class="s3">=&quot;http://www.thymeleaf.org&quot;</span>
+      <span class="s2">xmlns:sec</span><span class="s3">=&quot;http://www.thymeleaf.org/extras/spring-security&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">lang</span><span class="s3">=&quot;en&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;head&gt;</span>
+    <span class="s0">&lt;meta </span><span class="s2">charset</span><span class="s3">=&quot;UTF-8&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;title&gt;</span><span class="s4">Title</span><span class="s0">&lt;/title&gt;</span>
+    <span class="s0">&lt;link </span><span class="s2">th:href</span><span class="s3">=&quot;@{main.css}&quot; </span><span class="s2">rel</span><span class="s3">=&quot;stylesheet&quot; </span><span class="s0">/&gt;</span>
+    <span class="s0">&lt;script </span><span class="s2">src</span><span class="s3">=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js&quot;</span><span class="s0">&gt;&lt;/script&gt;</span>
+<span class="s0">&lt;/head&gt;</span>
+<span class="s0">&lt;body&gt;</span>
+<span class="s0">&lt;div&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">style</span><span class="s3">=&quot;</span><span class="s2">display</span><span class="s4">: </span><span class="s3">flex</span><span class="s5">; </span><span class="s2">justify-content</span><span class="s4">: </span><span class="s3">center&quot;</span><span class="s0">&gt;</span><span class="s4">Tên đơn vị : Công ty TNHH ABC </span><span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;br&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">style</span><span class="s3">=&quot;</span><span class="s2">display</span><span class="s4">: </span><span class="s3">flex</span><span class="s5">; </span><span class="s2">justify-content</span><span class="s4">: </span><span class="s3">center&quot;</span><span class="s0">&gt;</span><span class="s4">Bộ phận : Văn phòng hành chính</span><span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;br&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">style</span><span class="s3">=&quot;</span><span class="s2">display</span><span class="s4">: </span><span class="s3">flex</span><span class="s5">; </span><span class="s2">justify-content</span><span class="s4">: </span><span class="s3">center&quot; </span><span class="s2">th:text</span><span class="s3">=&quot;${'BẢNG BÁO CÁO HỢP ĐỒNG LAO ĐỘNG CÔNG TY'}&quot;</span><span class="s0">&gt;&lt;/div&gt;</span>
+    <span class="s0">&lt;br&gt;</span>
+    <span class="s0">&lt;i&gt;&lt;div </span><span class="s2">style</span><span class="s3">=&quot;</span><span class="s2">display</span><span class="s4">: </span><span class="s3">flex</span><span class="s5">; </span><span class="s2">justify-content</span><span class="s4">: </span><span class="s3">center&quot; </span><span class="s2">th:text</span><span class="s3">=&quot;${'Ngày ' + day + ' tháng ' + month + ' năm ' + year}&quot;</span><span class="s0">&gt;&lt;/div&gt;&lt;/i&gt;</span>
+    <span class="s0">&lt;br&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;container-table&quot;</span><span class="s0">&gt;</span>
+        <span class="s0">&lt;table </span><span class="s2">style</span><span class="s3">=&quot;</span><span class="s2">width</span><span class="s4">: </span><span class="s6">70</span><span class="s4">%</span><span class="s5">;</span><span class="s3">&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;tr&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Mã số nhân viên</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Họ và tên</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Số điện thoại</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Email</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Địa chỉ hiện tại</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Ngày sinh</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Chức vụ</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Phòng ban làm việc</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Ngày bắt đầu hợp đồng</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Ngày kết thúc hợp đồng</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Mức lương hiện tại (Lương/Tháng)</span><span class="s0">&lt;/th&gt;</span>
+                <span class="s0">&lt;th&gt;</span><span class="s4">Tiền phụ cấp thêm</span><span class="s0">&lt;/th&gt;</span>
+            <span class="s0">&lt;/tr&gt;</span>
+            <span class="s0">&lt;tr </span><span class="s2">th:each</span><span class="s3">=&quot;hopDong : ${hopDongFilterList}&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;nhanVien : ${nhanVienList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${nhanVien.getMSNV() == hopDong.getMSNV()}&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getHoTen()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getSDT()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getEmail()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getDiaChiHienTai()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getNgaySinh()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;chucVu : ${chucVuList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${chucVu.getMaCV() == nhanVien.getMaCV()}&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${chucVu.getTenChucVu()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/div&gt;</span>
+                    <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;phongBan : ${phongBanList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${phongBan.getMaPB() == nhanVien.getMaPB()}&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${phongBan.getTenPB()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/div&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${hopDong.getNgayBatDauHD()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${hopDong.getNgayKetThucHD()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${hopDong.getLuongThang()} + ' VNĐ'&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;chucVu : ${chucVuList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${chucVu.getMaCV() == nhanVien.getMaCV()}&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${chucVu.getTienPhuCap()} + ' VNĐ'&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/div&gt;</span>
+                <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;/tr&gt;</span>
+            <span class="s0">&lt;tr </span><span class="s2">th:each</span><span class="s3">=&quot;hopDong : ${hopDongExpiredList}&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;nhanVien : ${nhanVienList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${nhanVien.getMSNV() == hopDong.getMSNV()}&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getHoTen()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getSDT()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getEmail()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getDiaChiHienTai()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getNgaySinh()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;chucVu : ${chucVuList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${chucVu.getMaCV() == nhanVien.getMaCV()}&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${chucVu.getTenChucVu()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/div&gt;</span>
+                    <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;phongBan : ${phongBanList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${phongBan.getMaPB() == nhanVien.getMaPB()}&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${phongBan.getTenPB()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/div&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">colspan</span><span class="s3">=&quot;3&quot; </span><span class="s2">th:text</span><span class="s3">=&quot;'Hợp đồng lao động đã hết hạn'&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;chucVu : ${chucVuList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${chucVu.getMaCV() == nhanVien.getMaCV()}&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${chucVu.getTienPhuCap()} + ' VNĐ'&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/div&gt;</span>
+                <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;/tr&gt;</span>
+            <span class="s0">&lt;tr </span><span class="s2">th:each</span><span class="s3">=&quot;nhanVien : ${nhanVienNoHopDongList}&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;div&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getMSNV()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getHoTen()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getSDT()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getEmail()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getDiaChiHienTai()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${nhanVien.getNgaySinh()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;chucVu : ${chucVuList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${chucVu.getMaCV() == nhanVien.getMaCV()}&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${chucVu.getTenChucVu()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/div&gt;</span>
+                    <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;phongBan : ${phongBanList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${phongBan.getMaPB() == nhanVien.getMaPB()}&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${phongBan.getTenPB()}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                    <span class="s0">&lt;/div&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">colspan</span><span class="s3">=&quot;3&quot; </span><span class="s2">th:text</span><span class="s3">=&quot;'Chưa có hợp đồng lao đồng'&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                <span class="s0">&lt;/div&gt;</span>
+                <span class="s0">&lt;div </span><span class="s2">th:each</span><span class="s3">=&quot;chucVu : ${chucVuList}&quot; </span><span class="s2">th:if</span><span class="s3">=&quot;${chucVu.getMaCV() == nhanVien.getMaCV()}&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${chucVu.getTienPhuCap()} + ' VNĐ'&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+                <span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;/tr&gt;</span>
+        <span class="s0">&lt;/table&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;br&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;container-signature&quot;</span><span class="s0">&gt;</span>
+        <span class="s0">&lt;div </span><span class="s2">style</span><span class="s3">=&quot;</span><span class="s2">display</span><span class="s4">: </span><span class="s3">flex</span><span class="s5">; </span><span class="s2">flex-direction</span><span class="s4">: </span><span class="s3">column</span><span class="s5">; </span><span class="s2">justify-content</span><span class="s4">: </span><span class="s3">center</span><span class="s5">; </span><span class="s2">align-items</span><span class="s4">: </span><span class="s3">center&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;div&gt;</span><span class="s4">Kế toán thanh toán</span><span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;div&gt;</span><span class="s4">(Kí, ghi rõ họ tên)</span><span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;div&gt;</span>
+            <span class="s0">&lt;div&gt;</span><span class="s4">Thủ trưởng đơn vị</span><span class="s0">&lt;/div&gt;</span>
+            <span class="s0">&lt;div&gt;</span><span class="s4">(Kí, ghi rõ họ tên)</span><span class="s0">&lt;/div&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+<span class="s0">&lt;/div&gt;</span>
+<span class="s0">&lt;/body&gt;</span>
+<span class="s0">&lt;/html&gt;</span></pre>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{main.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div>Chỉnh sửa hợp đồng lao động</div>
+    <div>
+        <form th:action="@{/home}" th:object="${hopDongEdit}" method="post">
+            <div>Mã số nhân viên</div>
+            <div th:text="${hopDong.getMSNV()}"></div>
+            <input type="hidden" id="MSNV" name="MSNV" th:value="${hopDong.getMSNV()}">
+            <div>Mã số hợp đồng</div>
+            <input th:type="text" th:value="${hopDong.getMaHD()}" id="maHD" name="maHD">
+            <div>Tên hợp đồng</div>
+            <input th:type="text" th:value="${hopDong.getTenHopDong()}" id="tenHopDong" name="tenHopDong">
+            <div>Tên nhân viên</div>
+            <div th:text="${nhanVien.getHoTen()}"></div>
+            <div>Thời gian bắt đầu hợp đồng</div>
+            <input th:type="date" th:value="${hopDong.getNgayBatDauHD()}" id="ngayBatDauHD" name="ngayBatDauHD" required>
+            <div>Thời gian kết thúc hợp đồng</div>
+            <input th:type="date" th:value="${hopDong.getNgayKetThucHD()}" id="ngayKetThucHD" name="ngayKetThucHD" required>
+            <div>Lương nhân viên/tháng</div>
+            <input type="text" th:value="${hopDong.getLuongThang()}" id="luongThang" name="luongThang" required>
+            <input type="hidden" name="check" value="OK">
+            <input type="hidden" name="action" value="editLaborContract">
+            <input type="hidden" name="pageView" value="3">
+            <br>
+            <br>
+            <input type="submit" value="Xác nhận">
+        </form>
+
+    </div>
+</body>
+</html>

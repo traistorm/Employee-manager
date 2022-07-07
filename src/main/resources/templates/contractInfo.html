@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{css/HDLD.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="content">
+        <h1><i class="far fa-handshake"></i> Thông tin hợp đồng lao động</h1>
+        <br>
+        <div th:text="'Nhân viên ' + ${nhanVien.getHoTen()}"></div>
+        <div th:text="'Mã số nhân viên ' + ${nhanVien.getMSNV()}"></div>
+        <br>
+        <div>
+            <div>Thêm hợp đồng mới</div>
+            <div>
+                <form th:action="@{/home}" th:object="${hopDongNew}" method="post">
+                    <table>
+                        <tr>
+                            <td>Mã số hợp đồng</td>
+                            <td><input placeholder="Mã số hợp đồng" id="maHD" name="maHD"></td>
+                            <td><input type="hidden" th:value="${nhanVien.getMSNV()}" id="MSNV" name="MSNV"></td>
+                        </tr>
+                        <tr>
+                            <td>Tên hợp đồng</td>
+                            <td><input placeholder="Tên hợp đồng" id="tenHopDong" name="tenHopDong"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày bắt đầu hợp đồng</td>
+                            <td><input type="Date" id="ngayBatDauHD" name="ngayBatDauHD"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày kết thúc hợp đồng</td>
+                            <td><input type="Date" id="ngayKetThucHD" name="ngayKetThucHD"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Thêm hợp đồng">
+                                <input type="hidden" name="addLaborContractConfirm" value="yes">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div>Thông tin các hợp đồng lao động đã có</div>
+        <div>
+            <div th:if="${hopDongFound == 'no'}">Chưa có hợp đồng lao động cho nhân viên này</div>
+            <div th:if="${hopDongFound == 'yes'}">
+                <div th:each="hopDong : ${hopDongNhanVienList}">
+                    <form th:action="@{/home}" method="post" th:object="${hopDongEdit}">
+                        <table>
+                            <tr>
+                                <td>Mã số hợp đồng</td>
+                                <td><input th:value="${hopDong.getMaHD()}" id="maHD" name="maHD"></td>
+                                <td><input type="hidden" th:value="${hopDong.getMSNV()}" id="MSNV" name="MSNV"></td>
+                            </tr>
+                            <tr>
+                                <td>Tên hợp đồng</td>
+                                <td><input th:value="${hopDong.getTenHopDong()}" id="tenHopDong" name="tenHopDong"></td>
+                            </tr>
+                            <tr>
+                                <td>Ngày bắt đầu hợp đồng</td>
+                                <td><input type="Date" th:value="${hopDong.getNgayBatDauHD()}" id="ngayBatDauHD" name="ngayBatDauHD"></td>
+                            </tr>
+                            <tr>
+                                <td>Ngày kết thúc hợp đồng</td>
+                                <td><input type="Date" th:value="${hopDong.getNgayKetThucHD()}" id="ngayKetThucHD" name="ngayKetThucHD"></td>
+                            </tr>
+                            <tr>
+                                <td>Ngày thêm hợp đồng</td>
+                                <td><input type="Date" th:value="${hopDong.getThoiGianThemHD()}" id="thoiGianThemHD" name="thoiGianThemHD"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="submit" value="Lưu thông tin"></td>
+                                <td><a th:href="'/home?deleteLaborContractConfirm=yes&MSNV=' + ${nhanVien.getMSNV()} + '&maHD=' + ${hopDong.getMaHD()}"><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                        </table>
+                        <input type="hidden" name="editLaborContractConfirm" value="yes">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div><a href="/home">Về trang chủ</a></div>
+    </div>
+</body>
+</html>

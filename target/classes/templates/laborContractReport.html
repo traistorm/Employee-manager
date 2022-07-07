@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{laborContractReport.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <div style="display: flex; justify-content: center">TÊN CÔNG TY : CÔNG TY TNHH ABC </div>
+    <br>
+    <div style="display: flex; justify-content: center">BỘ PHẬN : VĂN PHÒNG HÀNH CHÍNH</div>
+    <br>
+    <div style="display: flex; justify-content: center" th:text="${'BẢNG BÁO CÁO HỢP ĐỒNG LAO ĐỘNG CÔNG TY'}"></div>
+    <br>
+    <i><div style="display: flex; justify-content: center" th:text="${'Ngày ' + day + ' tháng ' + month + ' năm ' + year}"></div></i>
+    <br>
+    <div class="container-table">
+        <table style="width: 70%;">
+            <tr>
+                <th>Mã số nhân viên</th>
+                <th>Họ và tên</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+                <th>Địa chỉ hiện tại</th>
+                <th>Ngày sinh</th>
+                <th>Ngày bắt đầu hợp đồng</th>
+                <th>Ngày kết thúc hợp đồng</th>
+            </tr>
+            <tr th:each="hopDong : ${hopDongFilterList}">
+                <div th:each="nhanVien : ${nhanVienList}" th:if="${nhanVien.getMSNV() == hopDong.getMSNV()}">
+                    <td th:text="${nhanVien.getMSNV()}"></td>
+                    <td th:text="${nhanVien.getHoTen()}"></td>
+                    <td th:text="${nhanVien.getSDT()}"></td>
+                    <td th:text="${nhanVien.getEmail()}"></td>
+                    <td th:text="${nhanVien.getDiaChiHienTai()}"></td>
+                    <td th:text="${nhanVien.getNgaySinh()}"></td>
+                    <td th:text="${hopDong.getNgayBatDauHD()}"></td>
+                    <td th:text="${hopDong.getNgayKetThucHD()}"></td>
+                </div>
+            </tr>
+            <tr th:each="hopDong : ${hopDongExpiredList}">
+                <div th:each="nhanVien : ${nhanVienList}" th:if="${nhanVien.getMSNV() == hopDong.getMSNV()}">
+                    <td th:text="${nhanVien.getMSNV()}"></td>
+                    <td th:text="${nhanVien.getHoTen()}"></td>
+                    <td th:text="${nhanVien.getSDT()}"></td>
+                    <td th:text="${nhanVien.getEmail()}"></td>
+                    <td th:text="${nhanVien.getDiaChiHienTai()}"></td>
+                    <td th:text="${nhanVien.getNgaySinh()}"></td>
+                    <td colspan="3" th:text="'Hợp đồng lao động đã hết hạn'"></td>
+                </div>
+            </tr>
+            <tr th:each="nhanVien : ${nhanVienNoHopDongList}">
+                <div>
+                    <td th:text="${nhanVien.getMSNV()}"></td>
+                    <td th:text="${nhanVien.getHoTen()}"></td>
+                    <td th:text="${nhanVien.getSDT()}"></td>
+                    <td th:text="${nhanVien.getEmail()}"></td>
+                    <td th:text="${nhanVien.getDiaChiHienTai()}"></td>
+                    <td th:text="${nhanVien.getNgaySinh()}"></td>
+                    <td colspan="3" th:text="'Chưa có hợp đồng lao đồng'"></td>
+                </div>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div class="container-signature">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+            <div>Kế toán thanh toán</div>
+            <div>(Kí, ghi rõ họ tên)</div>
+        </div>
+        <div>
+            <div>Thủ trưởng đơn vị</div>
+            <div>(Kí, ghi rõ họ tên)</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

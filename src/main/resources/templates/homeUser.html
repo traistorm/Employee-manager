@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{css/thongTinNhanVien.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <p class="logo" th:text="'Chào mừng bạn đến với trang quản lý ! '"></p>
+    <br>
+    <div>
+        <div>
+            <div class="header">
+                <ul>
+                    <li><a th:href="@{/home?pageView=1}">Thông tin nhân viên</a></li>
+                    <li><a th:href="@{/home?pageView=2}">Thông tin phòng ban - chức vụ</a></li>
+                    <li><a th:href="@{/home?pageView=3}">Thông tin hợp đồng lao động</a></li>
+                    <li><a th:href="@{/home?pageView=4}">Thông tin lương</a></li>
+                    <li><a class="logoutLink" href="/"><i class="fas fa-sign-out-alt"></i></a></li>
+                    <form th:action="@{/logout}" method="post" name="logoutForm" th:hidden="true">
+                        <input type="submit" value="Logout" />
+                    </form>
+                </ul>
+            </div>
+            <br>
+            <div th:if="${pageView == '1'}" class="content">
+                <h1><i class="fas fa-users"></i> Thông tin nhân viên</h1>
+                <br>
+                <div class="info">
+                    <table>
+                        <tr>
+                            <td>Mã số nhân viên</td>
+                            <td th:text="${MSNV}"></td>
+                        </tr>
+                        <tr>
+                            <td>Tên nhân viên</td>
+                            <td th:text="${hoTen}"></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td th:text="${email}"></td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại</td>
+                            <td th:text="${SDT}"></td>
+                        </tr>
+                        <tr>
+                            <td>Số chứng minh thư</td>
+                            <td th:text="${CMT}"></td>
+                        </tr>
+                        <tr>
+                            <td>Công việc hiện tại</td>
+                            <td th:text="${congViecHienTai}"></td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ hiện tại</td>
+                            <td th:text="${diaChiHienTai}"></td>
+                        </tr>
+                        <tr>
+                            <td>Quê quán</td>
+                            <td th:text="${queQuan}"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày sinh</td>
+                            <td th:text="${ngaySinh}"></td>
+                        </tr>
+                        <tr>
+                            <td>Giới tính</td>
+                            <td th:text="${gioiTinh}"></td>
+                        </tr>
+                        <tr>
+                            <td>Dân tộc</td>
+                            <td th:text="${danToc}"></td>
+                        </tr>
+                        <tr>
+                            <td>Sở thích</td>
+                            <td th:text="${soThich}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="avatar-container">
+                    <div>Ảnh đại diện</div>
+                    <img th:src="${'/img/' + anhDaiDien}">
+                    <div class="clearfix"></div>
+                    <a th:href="'/editUser?MSNV=' + ${MSNV}">Chỉnh sửa thông tin cá nhân</a>
+                </div>
+                <br>
+
+            </div>
+            <div th:if="${pageView == '3'}" class="content-pageView-3">
+                <h1><i class="far fa-handshake"></i> Thông tin hợp đồng lao động</h1>
+                <br>
+                <div th:each="hopDong : ${hopDongList}" class="labor-contract-container">
+                    <table>
+                        <tr>
+                            <td>Mã số hợp đồng</td>
+                            <td th:text="${hopDong.getMaHD()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Thời gian bắt đầu hợp đồng</td>
+                            <td th:text="${hopDong.getNgayBatDauHD()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Thời gian kết thúc hợp đồng</td>
+                            <td th:text="${hopDong.getNgayKetThucHD()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Thời gian thêm hợp đồng</td>
+                            <td th:text="${hopDong.getThoiGianThemHD()}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div th:if="${pageView == '2'}" class="content-pageView-2">
+                <h2><i class="fas fa-door-closed"></i>Thông tin phòng ban</h2>
+                <br>
+                <div>
+                    <div>
+                        Thông tin phòng ban
+                    </div>
+                    <table class="info-department-container">
+                        <tr>
+                            <td>Mã số phòng ban</td>
+                            <td th:text="${phongBan.getMaPB()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Tên phòng ban</td>
+                            <td th:text="${phongBan.getTenPB()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại phòng ban</td>
+                            <td th:text="${phongBan.getSDTPB()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Email phòng ban</td>
+                            <td th:text="${phongBan.getEmailPB()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ phòng ban</td>
+                            <td th:text="${phongBan.getDiaChiPB()}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <h2><i class="fas fa-briefcase"></i> Thông tin chức vụ</h2>
+                    <div th:each="chiTietChucVu : ${chiTietChucVuList}">
+                        <table class="office-container">
+                            <tr>
+                                <td>Tên chức vụ</td>
+                                <div th:each="chucVu : ${chucVuList}" th:if="${chucVu.getMaCV() == chiTietChucVu.getMaCV()}">
+                                    <td th:text="${chucVu.getTenChucVu()}"></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <td>Ngày bắt đầu chức vụ</td>
+                                <td th:text="${chiTietChucVu.getNgayBatDauCV()}"></td>
+                            </tr>
+                            <tr>
+                                <td>Ngày kết thúc chức vụ</td>
+                                <div th:if="${chiTietChucVu.getNgayKetThucCV() != null}">
+                                    <td th:text="${chiTietChucVu.getNgayKetThucCV()}"></td>
+                                </div>
+                                <div th:if="${chiTietChucVu.getNgayKetThucCV() == null}">
+                                    <td>Chưa rõ</td>
+                                </div>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${pageView == '4'}" class="conten-pageView-4">
+                <h1><i class="fas fa-search-dollar"></i> Thông tin lương nhân viên</h1>
+                <br>
+                <h2><i class="fas fa-money-check-alt"></i> Mức lương hiện tại</h2>
+                <table class="salary-container">
+                    <tr>
+                        <td>Lương cơ bản : </td>
+                        <td th:text="${nhanVien.getLuongCoBan()} + ' VNĐ'"></td>
+                    </tr>
+                    <tr>
+                        <td>Hệ số lương : </td>
+                        <td th:text="${nhanVien.getHeSoLuong()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Hệ số phụ cấp : </td>
+                        <td th:text="${nhanVien.getHeSoPhuCap()}"></td>
+                    </tr>
+                </table>
+                <h2><i class="fas fa-hand-holding-usd"></i> Lương đã lĩnh</h2>
+                <table class="grabbed-salary-container">
+                    <tr>
+                        <th>|Mã lương|</th>
+                        <th>|Lương cơ bản|</th>
+                        <th>|Hệ số lương|</th>
+                        <th>|Hệ số phụ cấp|</th>
+                        <th>|Ngày thanh toán lương|</th>
+                    </tr>
+                    <tr th:each="luongNhanVien : ${luongNhanVienList}">
+                        <td th:text="${luongNhanVien.getMaLuong()}"></td>
+                        <td th:text="${luongNhanVien.getLuongCoBan()}"></td>
+                        <td th:text="${luongNhanVien.getHeSoLuong()}"></td>
+                        <td th:text="${luongNhanVien.getHeSoPhuCap()}"></td>
+                        <td th:text="${luongNhanVien.getNgayThanhToan()}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function() {
+        $(".logoutLink").on("click", function (e) {
+            e.preventDefault();
+            document.logoutForm.submit();
+        });
+    });
+</script>
+</html>

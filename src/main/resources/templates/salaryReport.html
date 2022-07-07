@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{salaryReport.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        <div style="display: flex; justify-content: center">TÊN CÔNG TY : CÔNG TY TNHH ABC </div>
+        <br>
+        <div style="display: flex; justify-content: center">BỘ PHẬN : VĂN PHÒNG HÀNH CHÍNH</div>
+        <br>
+        <div style="display: flex; justify-content: center" th:text="${'BẢNG BÁO CÁO TIỀN LƯƠNG THÁNG ' + month}"></div>
+        <br>
+        <i><div style="display: flex; justify-content: center" th:text="${'Ngày ' + day + ' tháng ' + month + ' năm ' + year}"></div></i>
+        <br>
+        <div class="container-table">
+            <table style="width: 70%;">
+                <tr>
+                    <th>Mã số nhân viên</th>
+                    <th>Họ và tên</th>
+                    <th>Số điện thoại nhân viên</th>
+                    <th>Email</th>
+                    <th>Ngày sinh</th>
+                    <th>Địa chỉ</th>
+                    <th>Lương nhân viên hiện tại</th>
+                </tr>
+                <div th:each="nhanVien : ${nhanVienList}">
+                    <tr>
+                        <td th:text="${nhanVien.getMSNV()}"></td>
+                        <td th:text="${nhanVien.getHoTen()}"></td>
+                        <td th:text="${nhanVien.getSDT()}"></td>
+                        <td th:text="${nhanVien.getEmail()}"></td>
+                        <td th:text="${nhanVien.getNgaySinh()}"></td>
+                        <td th:text="${nhanVien.getDiaChiHienTai()}"></td>
+                        <td th:with="luong = ${nhanVien.getLuongCoBan() * (nhanVien.getHeSoPhuCap() + nhanVien.getHeSoLuong())}">
+                            <div th:text="${#numbers.formatDecimal(luong, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></div>
+                        </td>
+                    </tr>
+                </div>
+                <tr>
+                    <div>
+                        <td colspan="4">Tổng lương nhân viên trong tháng</td>
+                        <td colspan="5" th:text="${#numbers.formatDecimal(tongLuong, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
+                    </div>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div class="container-signature">
+            <div>
+                <div>Kế toán thanh toán</div>
+                <div>(Kí, ghi rõ họ tên)</div>
+            </div>
+            <div>
+                <div>Thủ trưởng đơn vị</div>
+                <div>(Kí, ghi rõ họ tên)</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
